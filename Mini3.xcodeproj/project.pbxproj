@@ -11,6 +11,19 @@
 		8443A6F22AEF1EE200E5ECA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443A6F12AEF1EE200E5ECA5 /* ContentView.swift */; };
 		8443A6F42AEF1EE200E5ECA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8443A6F32AEF1EE200E5ECA5 /* Assets.xcassets */; };
 		8443A6F72AEF1EE200E5ECA5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8443A6F62AEF1EE200E5ECA5 /* Preview Assets.xcassets */; };
+		846DAD482AEF2BEE00BB66FF /* CloudKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD472AEF2BEE00BB66FF /* CloudKitService.swift */; };
+		846DAD4A2AEF2D1400BB66FF /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD492AEF2D1400BB66FF /* CustomButton.swift */; };
+		846DAD4C2AEF2D3500BB66FF /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD4B2AEF2D3500BB66FF /* CustomTextField.swift */; };
+		846DAD4E2AEF2E3C00BB66FF /* CustomColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD4D2AEF2E3C00BB66FF /* CustomColorPicker.swift */; };
+		846DAD502AEF306A00BB66FF /* PDFReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD4F2AEF306A00BB66FF /* PDFReader.swift */; };
+		846DAD522AEF349900BB66FF /* NotePad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD512AEF349900BB66FF /* NotePad.swift */; };
+		846DAD552AEF381500BB66FF /* DrawingTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD542AEF381500BB66FF /* DrawingTool.swift */; };
+		846DAD572AEF38F500BB66FF /* DrawingToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD562AEF38F500BB66FF /* DrawingToolBar.swift */; };
+		846DAD592AEF4AF500BB66FF /* UndoRedoToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD582AEF4AF500BB66FF /* UndoRedoToolbar.swift */; };
+		846DAD5B2AEF4E6700BB66FF /* NotePadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD5A2AEF4E6700BB66FF /* NotePadViewModel.swift */; };
+		846DAD5D2AEF4FFF00BB66FF /* NotePadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD5C2AEF4FFF00BB66FF /* NotePadView.swift */; };
+		846DAD5F2AEF5F4000BB66FF /* PetInfoFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD5E2AEF5F4000BB66FF /* PetInfoFormView.swift */; };
+		846DAD612AEF60CB00BB66FF /* PetInfoFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD602AEF60CB00BB66FF /* PetInfoFormViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +32,19 @@
 		8443A6F12AEF1EE200E5ECA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8443A6F32AEF1EE200E5ECA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8443A6F62AEF1EE200E5ECA5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		846DAD472AEF2BEE00BB66FF /* CloudKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitService.swift; sourceTree = "<group>"; };
+		846DAD492AEF2D1400BB66FF /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		846DAD4B2AEF2D3500BB66FF /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		846DAD4D2AEF2E3C00BB66FF /* CustomColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColorPicker.swift; sourceTree = "<group>"; };
+		846DAD4F2AEF306A00BB66FF /* PDFReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReader.swift; sourceTree = "<group>"; };
+		846DAD512AEF349900BB66FF /* NotePad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePad.swift; sourceTree = "<group>"; };
+		846DAD542AEF381500BB66FF /* DrawingTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingTool.swift; sourceTree = "<group>"; };
+		846DAD562AEF38F500BB66FF /* DrawingToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingToolBar.swift; sourceTree = "<group>"; };
+		846DAD582AEF4AF500BB66FF /* UndoRedoToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoRedoToolbar.swift; sourceTree = "<group>"; };
+		846DAD5A2AEF4E6700BB66FF /* NotePadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePadViewModel.swift; sourceTree = "<group>"; };
+		846DAD5C2AEF4FFF00BB66FF /* NotePadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePadView.swift; sourceTree = "<group>"; };
+		846DAD5E2AEF5F4000BB66FF /* PetInfoFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoFormView.swift; sourceTree = "<group>"; };
+		846DAD602AEF60CB00BB66FF /* PetInfoFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoFormViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +77,12 @@
 		8443A6EE2AEF1EE200E5ECA5 /* Mini3 */ = {
 			isa = PBXGroup;
 			children = (
+				846DAD532AEF380300BB66FF /* Enum */,
+				846DAD462AEF2B6700BB66FF /* View */,
+				846DAD452AEF2B5E00BB66FF /* ViewModel */,
+				846DAD442AEF2B5800BB66FF /* Model */,
+				846DAD432AEF2B5100BB66FF /* Component */,
+				846DAD422AEF2B0500BB66FF /* Service */,
 				8443A6EF2AEF1EE200E5ECA5 /* Mini3App.swift */,
 				8443A6F12AEF1EE200E5ECA5 /* ContentView.swift */,
 				8443A6F32AEF1EE200E5ECA5 /* Assets.xcassets */,
@@ -65,6 +97,61 @@
 				8443A6F62AEF1EE200E5ECA5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		846DAD422AEF2B0500BB66FF /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				846DAD472AEF2BEE00BB66FF /* CloudKitService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		846DAD432AEF2B5100BB66FF /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				846DAD492AEF2D1400BB66FF /* CustomButton.swift */,
+				846DAD4B2AEF2D3500BB66FF /* CustomTextField.swift */,
+				846DAD4D2AEF2E3C00BB66FF /* CustomColorPicker.swift */,
+				846DAD4F2AEF306A00BB66FF /* PDFReader.swift */,
+				846DAD512AEF349900BB66FF /* NotePad.swift */,
+				846DAD562AEF38F500BB66FF /* DrawingToolBar.swift */,
+				846DAD582AEF4AF500BB66FF /* UndoRedoToolbar.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		846DAD442AEF2B5800BB66FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		846DAD452AEF2B5E00BB66FF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				846DAD5A2AEF4E6700BB66FF /* NotePadViewModel.swift */,
+				846DAD602AEF60CB00BB66FF /* PetInfoFormViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		846DAD462AEF2B6700BB66FF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				846DAD5C2AEF4FFF00BB66FF /* NotePadView.swift */,
+				846DAD5E2AEF5F4000BB66FF /* PetInfoFormView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		846DAD532AEF380300BB66FF /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				846DAD542AEF381500BB66FF /* DrawingTool.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +224,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846DAD5F2AEF5F4000BB66FF /* PetInfoFormView.swift in Sources */,
+				846DAD4A2AEF2D1400BB66FF /* CustomButton.swift in Sources */,
+				846DAD482AEF2BEE00BB66FF /* CloudKitService.swift in Sources */,
+				846DAD502AEF306A00BB66FF /* PDFReader.swift in Sources */,
+				846DAD552AEF381500BB66FF /* DrawingTool.swift in Sources */,
+				846DAD592AEF4AF500BB66FF /* UndoRedoToolbar.swift in Sources */,
+				846DAD522AEF349900BB66FF /* NotePad.swift in Sources */,
+				846DAD612AEF60CB00BB66FF /* PetInfoFormViewModel.swift in Sources */,
+				846DAD4E2AEF2E3C00BB66FF /* CustomColorPicker.swift in Sources */,
+				846DAD572AEF38F500BB66FF /* DrawingToolBar.swift in Sources */,
+				846DAD5B2AEF4E6700BB66FF /* NotePadViewModel.swift in Sources */,
 				8443A6F22AEF1EE200E5ECA5 /* ContentView.swift in Sources */,
 				8443A6F02AEF1EE200E5ECA5 /* Mini3App.swift in Sources */,
+				846DAD4C2AEF2D3500BB66FF /* CustomTextField.swift in Sources */,
+				846DAD5D2AEF4FFF00BB66FF /* NotePadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +375,7 @@
 				DEVELOPMENT_TEAM = J74996J2KY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to save your notes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +405,7 @@
 				DEVELOPMENT_TEAM = J74996J2KY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to save your notes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

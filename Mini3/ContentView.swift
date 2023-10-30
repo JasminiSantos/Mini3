@@ -6,14 +6,23 @@
 //
 
 import SwiftUI
+import PencilKit
 
 struct ContentView: View {
+    @StateObject private var viewModel = NotePadViewModel()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            CustomTextField(text: $textInput, placeholder: "Enter text", onCommit: {
+                print("Text field commit action")
+            })
+            .padding()
+        
+            CustomButton(title: "Botão", action: {
+        
+            }, backgroundColor: .cyan, textColor: .white)
+        
+                        PDFReader(url: URL(string: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf")!)
         }
         .padding()
     }
