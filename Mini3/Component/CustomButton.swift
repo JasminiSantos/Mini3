@@ -16,12 +16,13 @@ struct CustomButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
+                .font(.title2)
                 .fontWeight(.bold)
                 .foregroundColor(textColor)
                 .padding()
-                .frame(maxWidth: .infinity)
+                .frame(width: 200, height: 55)
                 .background(backgroundColor)
-                .cornerRadius(10)
+                .cornerRadius(16)
         }
         .buttonStyle(PlainButtonStyle())
     }

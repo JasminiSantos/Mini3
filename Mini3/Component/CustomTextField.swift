@@ -13,10 +13,20 @@ struct CustomTextField: View {
     var onCommit: () -> Void
     
     var body: some View {
-        TextField(placeholder, text: $text, onCommit: onCommit)
-            .padding()
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(8)
-            .padding(.horizontal)
+        
+        ZStack {
+            // White background
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color.white)
+                .frame(height: 60) // Adjust the height as needed
+            
+            // Mint border
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(Color("Menta"), lineWidth: 2)
+                .frame(height: 60) // Should match the height of the background
+            
+            TextField(placeholder, text: $text, onCommit: onCommit)
+                .padding(.horizontal,20)
+        }
     }
 }

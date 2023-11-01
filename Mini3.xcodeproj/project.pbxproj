@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		244B35D42AF1773F00E6B491 /* PetProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244B35D32AF1773F00E6B491 /* PetProfileView.swift */; };
 		8443A6F02AEF1EE200E5ECA5 /* Mini3App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443A6EF2AEF1EE200E5ECA5 /* Mini3App.swift */; };
 		8443A6F22AEF1EE200E5ECA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443A6F12AEF1EE200E5ECA5 /* ContentView.swift */; };
 		8443A6F42AEF1EE200E5ECA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8443A6F32AEF1EE200E5ECA5 /* Assets.xcassets */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		244B35D32AF1773F00E6B491 /* PetProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileView.swift; sourceTree = "<group>"; };
 		8443A6EC2AEF1EE200E5ECA5 /* Mini3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mini3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8443A6EF2AEF1EE200E5ECA5 /* Mini3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mini3App.swift; sourceTree = "<group>"; };
 		8443A6F12AEF1EE200E5ECA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				846DAD432AEF2B5100BB66FF /* Component */,
 				846DAD422AEF2B0500BB66FF /* Service */,
 				8443A6EF2AEF1EE200E5ECA5 /* Mini3App.swift */,
+				244B35D32AF1773F00E6B491 /* PetProfileView.swift */,
 				8443A6F12AEF1EE200E5ECA5 /* ContentView.swift */,
 				8443A6F32AEF1EE200E5ECA5 /* Assets.xcassets */,
 				8443A6F52AEF1EE200E5ECA5 /* Preview Content */,
@@ -228,6 +231,7 @@
 				846DAD4A2AEF2D1400BB66FF /* CustomButton.swift in Sources */,
 				846DAD482AEF2BEE00BB66FF /* CloudKitService.swift in Sources */,
 				846DAD502AEF306A00BB66FF /* PDFReader.swift in Sources */,
+				244B35D42AF1773F00E6B491 /* PetProfileView.swift in Sources */,
 				846DAD552AEF381500BB66FF /* DrawingTool.swift in Sources */,
 				846DAD592AEF4AF500BB66FF /* UndoRedoToolbar.swift in Sources */,
 				846DAD522AEF349900BB66FF /* NotePad.swift in Sources */,

@@ -9,7 +9,7 @@ import SwiftUI
 import PencilKit
 
 struct ContentView: View {
-    @State var textInput: String = "
+    @State var textInput: String = ""
     
     var body: some View {
         VStack {
