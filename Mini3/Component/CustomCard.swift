@@ -51,7 +51,8 @@ struct CustomCard: View {
             }
 
         }
-        .frame(height: 130)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 30)
         .background(backgroundColor)
         .cornerRadius(29)
     }
