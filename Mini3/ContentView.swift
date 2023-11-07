@@ -9,7 +9,7 @@ import SwiftUI
 import PencilKit
 
 struct ContentView: View {
-    @State var textInput: String = "
+    @State var textInput: String = ""
     
     var body: some View {
         VStack {
@@ -24,7 +24,7 @@ struct ContentView: View {
         
                         PDFReader(url: URL(string: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf")!)
         }
-        .padding()
+        .padding() 
     }
 }
 

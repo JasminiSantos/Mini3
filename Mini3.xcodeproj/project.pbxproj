@@ -24,6 +24,9 @@
 		846DAD5D2AEF4FFF00BB66FF /* NotePadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD5C2AEF4FFF00BB66FF /* NotePadView.swift */; };
 		846DAD5F2AEF5F4000BB66FF /* PetInfoFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD5E2AEF5F4000BB66FF /* PetInfoFormView.swift */; };
 		846DAD612AEF60CB00BB66FF /* PetInfoFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD602AEF60CB00BB66FF /* PetInfoFormViewModel.swift */; };
+		9F2C237D2AF4196A004CD389 /* PetProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C237C2AF4196A004CD389 /* PetProfileView.swift */; };
+		9F2C237F2AF54585004CD389 /* TutorProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C237E2AF54585004CD389 /* TutorProfileView.swift */; };
+		9F2C23812AF96D43004CD389 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C23802AF96D43004CD389 /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +48,9 @@
 		846DAD5C2AEF4FFF00BB66FF /* NotePadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePadView.swift; sourceTree = "<group>"; };
 		846DAD5E2AEF5F4000BB66FF /* PetInfoFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoFormView.swift; sourceTree = "<group>"; };
 		846DAD602AEF60CB00BB66FF /* PetInfoFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoFormViewModel.swift; sourceTree = "<group>"; };
+		9F2C237C2AF4196A004CD389 /* PetProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileView.swift; sourceTree = "<group>"; };
+		9F2C237E2AF54585004CD389 /* TutorProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorProfileView.swift; sourceTree = "<group>"; };
+		9F2C23802AF96D43004CD389 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +148,9 @@
 			children = (
 				846DAD5C2AEF4FFF00BB66FF /* NotePadView.swift */,
 				846DAD5E2AEF5F4000BB66FF /* PetInfoFormView.swift */,
+				9F2C237C2AF4196A004CD389 /* PetProfileView.swift */,
+				9F2C237E2AF54585004CD389 /* TutorProfileView.swift */,
+				9F2C23802AF96D43004CD389 /* OnboardingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -227,7 +236,9 @@
 				846DAD5F2AEF5F4000BB66FF /* PetInfoFormView.swift in Sources */,
 				846DAD4A2AEF2D1400BB66FF /* CustomButton.swift in Sources */,
 				846DAD482AEF2BEE00BB66FF /* CloudKitService.swift in Sources */,
+				9F2C23812AF96D43004CD389 /* OnboardingView.swift in Sources */,
 				846DAD502AEF306A00BB66FF /* PDFReader.swift in Sources */,
+				9F2C237D2AF4196A004CD389 /* PetProfileView.swift in Sources */,
 				846DAD552AEF381500BB66FF /* DrawingTool.swift in Sources */,
 				846DAD592AEF4AF500BB66FF /* UndoRedoToolbar.swift in Sources */,
 				846DAD522AEF349900BB66FF /* NotePad.swift in Sources */,
@@ -237,6 +248,7 @@
 				846DAD5B2AEF4E6700BB66FF /* NotePadViewModel.swift in Sources */,
 				8443A6F22AEF1EE200E5ECA5 /* ContentView.swift in Sources */,
 				8443A6F02AEF1EE200E5ECA5 /* Mini3App.swift in Sources */,
+				9F2C237F2AF54585004CD389 /* TutorProfileView.swift in Sources */,
 				846DAD4C2AEF2D3500BB66FF /* CustomTextField.swift in Sources */,
 				846DAD5D2AEF4FFF00BB66FF /* NotePadView.swift in Sources */,
 			);
