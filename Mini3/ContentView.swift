@@ -9,22 +9,17 @@ import SwiftUI
 import PencilKit
 
 struct ContentView: View {
-    @State var textInput: String = "
     
     var body: some View {
-        VStack {
-            CustomTextField(text: $textInput, placeholder: "Enter text", onCommit: {
-                print("Text field commit action")
-            })
+        NavigationStack {
+            VStack {
+                NavigationLink(destination: MedicalRecordView(), label: {
+                    Text("Acessar")
+                })
+            }
             .padding()
-        
-            CustomButton(title: "Botão", action: {
-        
-            }, backgroundColor: .cyan, textColor: .white)
-        
-                        PDFReader(url: URL(string: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf")!)
         }
-        .padding()
+        .accentColor(CustomColor.customOrange)
     }
 }
 

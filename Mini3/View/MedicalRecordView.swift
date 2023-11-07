@@ -13,6 +13,7 @@ struct MedicalRecordView: View {
     @ObservedObject private var viewModel = MedicalRecordViewModel()
     @ObservedObject private var notePadViewModel = NotePadViewModel(lineType: .dotted)
     @State private var isConfigured = false
+    @Environment(\.dismiss) var dismiss
     
     let column1Items = [
         TextLabelPair(label: "Médico Veterinário", text: "Dr. Juliano Rocha Fernandes"),

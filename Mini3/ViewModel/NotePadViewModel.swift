@@ -69,19 +69,19 @@ class NotePadViewModel: ObservableObject {
         }
     }
     
-//    func saveDrawing() {
-//        checkPhotoLibraryPermission { [weak self] hasPermission in
-//            guard hasPermission else {
-//                print("Photo library access denied")
-//                return
-//            }
-//            
-//            guard let self = self, let canvasView = self.canvasView else { return }
-//            
-//            let image = canvasView.drawing.image(from: canvasView.bounds, scale: UIScreen.main.scale)
-//            self.saveImageToAlbum(image)
-//        }
-//    }
+    func saveDrawingToAlbum() {
+        checkPhotoLibraryPermission { [weak self] hasPermission in
+            guard hasPermission else {
+                print("Photo library access denied")
+                return
+            }
+            
+            guard let self = self, let canvasView = self.canvasView else { return }
+            
+            let image = canvasView.drawing.image(from: canvasView.bounds, scale: UIScreen.main.scale)
+            self.saveImageToAlbum(image)
+        }
+    }
     
     func getImages() {
         guard let canvasView = self.canvasView else {
