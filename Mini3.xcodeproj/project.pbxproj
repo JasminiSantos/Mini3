@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		244B35D42AF1773F00E6B491 /* PetProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244B35D32AF1773F00E6B491 /* PetProfileView.swift */; };
+		24FE00732AF9630B00ACAA07 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE00722AF9630B00ACAA07 /* MenuView.swift */; };
+		24FE00752AF9632700ACAA07 /* PetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE00742AF9632700ACAA07 /* PetCard.swift */; };
+		24FE00772AF96E7200ACAA07 /* ConsultaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE00762AF96E7200ACAA07 /* ConsultaCard.swift */; };
+		24FE00792AFAAC4B00ACAA07 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE00782AFAAC4B00ACAA07 /* SearchBar.swift */; };
+		24FE007B2AFAB61900ACAA07 /* AddNewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE007A2AFAB61900ACAA07 /* AddNewButton.swift */; };
 		8443A6F02AEF1EE200E5ECA5 /* Mini3App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443A6EF2AEF1EE200E5ECA5 /* Mini3App.swift */; };
 		8443A6F22AEF1EE200E5ECA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443A6F12AEF1EE200E5ECA5 /* ContentView.swift */; };
 		8443A6F42AEF1EE200E5ECA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8443A6F32AEF1EE200E5ECA5 /* Assets.xcassets */; };
@@ -29,6 +34,11 @@
 
 /* Begin PBXFileReference section */
 		244B35D32AF1773F00E6B491 /* PetProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileView.swift; sourceTree = "<group>"; };
+		24FE00722AF9630B00ACAA07 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		24FE00742AF9632700ACAA07 /* PetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetCard.swift; sourceTree = "<group>"; };
+		24FE00762AF96E7200ACAA07 /* ConsultaCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultaCard.swift; sourceTree = "<group>"; };
+		24FE00782AFAAC4B00ACAA07 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		24FE007A2AFAB61900ACAA07 /* AddNewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewButton.swift; sourceTree = "<group>"; };
 		8443A6EC2AEF1EE200E5ECA5 /* Mini3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mini3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8443A6EF2AEF1EE200E5ECA5 /* Mini3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mini3App.swift; sourceTree = "<group>"; };
 		8443A6F12AEF1EE200E5ECA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -87,6 +97,7 @@
 				846DAD422AEF2B0500BB66FF /* Service */,
 				8443A6EF2AEF1EE200E5ECA5 /* Mini3App.swift */,
 				244B35D32AF1773F00E6B491 /* PetProfileView.swift */,
+				24FE00722AF9630B00ACAA07 /* MenuView.swift */,
 				8443A6F12AEF1EE200E5ECA5 /* ContentView.swift */,
 				8443A6F32AEF1EE200E5ECA5 /* Assets.xcassets */,
 				8443A6F52AEF1EE200E5ECA5 /* Preview Content */,
@@ -115,6 +126,10 @@
 			children = (
 				846DAD492AEF2D1400BB66FF /* CustomButton.swift */,
 				846DAD4B2AEF2D3500BB66FF /* CustomTextField.swift */,
+				24FE007A2AFAB61900ACAA07 /* AddNewButton.swift */,
+				24FE00782AFAAC4B00ACAA07 /* SearchBar.swift */,
+				24FE00742AF9632700ACAA07 /* PetCard.swift */,
+				24FE00762AF96E7200ACAA07 /* ConsultaCard.swift */,
 				846DAD4D2AEF2E3C00BB66FF /* CustomColorPicker.swift */,
 				846DAD4F2AEF306A00BB66FF /* PDFReader.swift */,
 				846DAD512AEF349900BB66FF /* NotePad.swift */,
@@ -234,13 +249,18 @@
 				244B35D42AF1773F00E6B491 /* PetProfileView.swift in Sources */,
 				846DAD552AEF381500BB66FF /* DrawingTool.swift in Sources */,
 				846DAD592AEF4AF500BB66FF /* UndoRedoToolbar.swift in Sources */,
+				24FE00732AF9630B00ACAA07 /* MenuView.swift in Sources */,
 				846DAD522AEF349900BB66FF /* NotePad.swift in Sources */,
 				846DAD612AEF60CB00BB66FF /* PetInfoFormViewModel.swift in Sources */,
 				846DAD4E2AEF2E3C00BB66FF /* CustomColorPicker.swift in Sources */,
+				24FE00752AF9632700ACAA07 /* PetCard.swift in Sources */,
 				846DAD572AEF38F500BB66FF /* DrawingToolBar.swift in Sources */,
+				24FE007B2AFAB61900ACAA07 /* AddNewButton.swift in Sources */,
 				846DAD5B2AEF4E6700BB66FF /* NotePadViewModel.swift in Sources */,
+				24FE00772AF96E7200ACAA07 /* ConsultaCard.swift in Sources */,
 				8443A6F22AEF1EE200E5ECA5 /* ContentView.swift in Sources */,
 				8443A6F02AEF1EE200E5ECA5 /* Mini3App.swift in Sources */,
+				24FE00792AFAAC4B00ACAA07 /* SearchBar.swift in Sources */,
 				846DAD4C2AEF2D3500BB66FF /* CustomTextField.swift in Sources */,
 				846DAD5D2AEF4FFF00BB66FF /* NotePadView.swift in Sources */,
 			);
