@@ -1,5 +1,5 @@
 //
-//  PetProfileView.swift
+//  VetProfileView.swift
 //  Mini3
 //
 //  Created by Júlia Savaris on 31/10/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PetProfileView: View {
+struct VetProfileView: View {
     @State var text: String = ""
     
     var body: some View {
