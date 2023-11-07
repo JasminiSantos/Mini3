@@ -11,7 +11,6 @@ import PencilKit
 struct DrawingToolbar: View {
     @Binding var selectedTool: DrawingTool
     @Binding var selectedColor: Color
-    @Binding var showColorPicker: Bool
     @Binding var clearCanvas: Bool
     
     var body: some View {
@@ -26,12 +25,6 @@ struct DrawingToolbar: View {
                 selectedTool = .eraser
             }) {
                 Image(systemName: "eraser")
-            }
-            
-            Button(action: {
-                showColorPicker.toggle()
-            }) {
-                Image(systemName: "paintpalette")
             }
             
             Button(action: {
