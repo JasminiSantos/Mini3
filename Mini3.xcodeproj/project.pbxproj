@@ -71,6 +71,7 @@
 		84308FFA2AF4B9CC00811B50 /* MedicalRecordExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalRecordExportView.swift; sourceTree = "<group>"; };
 		84308FFC2AF4BF6700811B50 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		843090002AF5D7D500811B50 /* TesteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesteView.swift; sourceTree = "<group>"; };
+		84354EBE2AFB211500BC09BF /* VetProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VetProfileViewModel.swift; sourceTree = "<group>"; };
 		843D07672AF1723D000FEA48 /* Especie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Especie.swift; sourceTree = "<group>"; };
 		843D07692AF173E2000FEA48 /* CondicaoCorporal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CondicaoCorporal.swift; sourceTree = "<group>"; };
 		843D076B2AF17512000FEA48 /* RegisterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterType.swift; sourceTree = "<group>"; };
@@ -205,6 +206,7 @@
 			children = (
 				846DAD5A2AEF4E6700BB66FF /* NotePadViewModel.swift */,
 				84308FEF2AF41C8E00811B50 /* MedicalRecordViewModel.swift */,
+				84354EBE2AFB211500BC09BF /* VetProfileViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -214,8 +216,6 @@
 			children = (
 				24FE00722AF9630B00ACAA07 /* MenuView.swift */,
 				244B35D32AF1773F00E6B491 /* VetProfileView.swift */,
-				846DAD5C2AEF4FFF00BB66FF /* NotePadView.swift */,
-				846DAD5E2AEF5F4000BB66FF /* PetInfoFormView.swift */,
 				9F2C237C2AF4196A004CD389 /* PetProfileView.swift */,
 				9F2C237E2AF54585004CD389 /* TutorProfileView.swift */,
 				9F2C23802AF96D43004CD389 /* OnboardingView.swift */,
@@ -349,6 +349,7 @@
 				9F2C237F2AF54585004CD389 /* TutorProfileView.swift in Sources */,
 				843090012AF5D7D500811B50 /* TesteView.swift in Sources */,
 				84308FF22AF44C4200811B50 /* Veterinarian.swift in Sources */,
+				84354EBF2AFB211500BC09BF /* VetProfileViewModel.swift in Sources */,
 				846DAD4C2AEF2D3500BB66FF /* CustomTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
