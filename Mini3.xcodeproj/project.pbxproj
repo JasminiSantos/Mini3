@@ -27,6 +27,8 @@
 		9F2C237D2AF4196A004CD389 /* PetProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C237C2AF4196A004CD389 /* PetProfileView.swift */; };
 		9F2C237F2AF54585004CD389 /* TutorProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C237E2AF54585004CD389 /* TutorProfileView.swift */; };
 		9F2C23812AF96D43004CD389 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C23802AF96D43004CD389 /* OnboardingView.swift */; };
+		9F2C23852AFC087A004CD389 /* FinalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C23842AFC087A004CD389 /* FinalView.swift */; };
+		9F2C23872AFC0885004CD389 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C23862AFC0885004CD389 /* ErrorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		9F2C237C2AF4196A004CD389 /* PetProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileView.swift; sourceTree = "<group>"; };
 		9F2C237E2AF54585004CD389 /* TutorProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorProfileView.swift; sourceTree = "<group>"; };
 		9F2C23802AF96D43004CD389 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		9F2C23842AFC087A004CD389 /* FinalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalView.swift; sourceTree = "<group>"; };
+		9F2C23862AFC0885004CD389 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,8 @@
 				9F2C237C2AF4196A004CD389 /* PetProfileView.swift */,
 				9F2C237E2AF54585004CD389 /* TutorProfileView.swift */,
 				9F2C23802AF96D43004CD389 /* OnboardingView.swift */,
+				9F2C23842AFC087A004CD389 /* FinalView.swift */,
+				9F2C23862AFC0885004CD389 /* ErrorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -237,6 +243,7 @@
 				846DAD4A2AEF2D1400BB66FF /* CustomButton.swift in Sources */,
 				846DAD482AEF2BEE00BB66FF /* CloudKitService.swift in Sources */,
 				9F2C23812AF96D43004CD389 /* OnboardingView.swift in Sources */,
+				9F2C23852AFC087A004CD389 /* FinalView.swift in Sources */,
 				846DAD502AEF306A00BB66FF /* PDFReader.swift in Sources */,
 				9F2C237D2AF4196A004CD389 /* PetProfileView.swift in Sources */,
 				846DAD552AEF381500BB66FF /* DrawingTool.swift in Sources */,
@@ -247,6 +254,7 @@
 				846DAD572AEF38F500BB66FF /* DrawingToolBar.swift in Sources */,
 				846DAD5B2AEF4E6700BB66FF /* NotePadViewModel.swift in Sources */,
 				8443A6F22AEF1EE200E5ECA5 /* ContentView.swift in Sources */,
+				9F2C23872AFC0885004CD389 /* ErrorView.swift in Sources */,
 				8443A6F02AEF1EE200E5ECA5 /* Mini3App.swift in Sources */,
 				9F2C237F2AF54585004CD389 /* TutorProfileView.swift in Sources */,
 				846DAD4C2AEF2D3500BB66FF /* CustomTextField.swift in Sources */,
