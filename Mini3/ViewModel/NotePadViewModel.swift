@@ -9,13 +9,48 @@ import SwiftUI
 import PencilKit
 import Photos
 
+@MainActor
 class NotePadViewModel: ObservableObject {
     @Published var selectedTool: DrawingTool = .pencil(.black)
     @Published var selectedColor: Color = .black
     @Published var clearCanvas: Bool = false
     @Published var canvasView: PKCanvasView? = nil
-    @Published var showColorPicker = false
     
+    @Published var canvasDrawings: [PKDrawing] = []
+    @Published var canvasImages: [UIImage?] = []
+    @Published var currentIndex = 0
+    @Published var lineType: lineType = .none
+    
+    init(lineType: lineType = .none) {
+        self.lineType = lineType
+    }
+    
+    init(currentIndex: Int){
+        self.currentIndex = currentIndex
+        self.selectCanvas(at: currentIndex)
+    }
+    
+    func selectCanvas(at index: Int) {
+        canvasDrawings[currentIndex] = canvasView!.drawing
+        currentIndex = index - 1
+
+        guard canvasDrawings.indices.contains(currentIndex) else {
+            return
+        }
+
+        canvasView?.drawing = canvasDrawings[currentIndex]
+    }
+    
+    func saveDrawing(){
+        if let drawing = canvasView?.drawing {
+            canvasDrawings[currentIndex] = drawing
+        }
+    }
+    
+    func initializeCanvasDrawings(count: Int) {
+        canvasDrawings = (0..<count).map { _ in PKDrawing() }
+    }
+
     var undoManager: UndoManager? {
         return canvasView?.undoManager
     }
@@ -34,7 +69,7 @@ class NotePadViewModel: ObservableObject {
         }
     }
     
-    func saveDrawing() {
+    func saveDrawingToAlbum() {
         checkPhotoLibraryPermission { [weak self] hasPermission in
             guard hasPermission else {
                 print("Photo library access denied")
@@ -45,6 +80,47 @@ class NotePadViewModel: ObservableObject {
             
             let image = canvasView.drawing.image(from: canvasView.bounds, scale: UIScreen.main.scale)
             self.saveImageToAlbum(image)
+        }
+    }
+    
+    func getImages() {
+        guard let canvasView = self.canvasView else {
+            print("CanvasView is not initialized")
+            return
+        }
+
+        for drawing in self.canvasDrawings {
+            let image = drawing.image(from: canvasView.bounds, scale: UIScreen.main.scale)
+            self.canvasImages.append(image)
+        }
+    }
+    
+    func getImage(at index: Int)-> UIImage? {
+        guard let canvasView = self.canvasView else {
+            print("CanvasView is not initialized")
+            return nil
+        }
+        return self.canvasDrawings[index-1].image(from: canvasView.bounds, scale: UIScreen.main.scale)
+    }
+    
+    func saveAllDrawingsToAlbum() {
+        checkPhotoLibraryPermission { [weak self] hasPermission in
+            guard hasPermission else {
+                print("Photo library access denied")
+                return
+            }
+            
+            guard let self = self else { return }
+            
+            guard let canvasView = self.canvasView else {
+                print("CanvasView is not initialized")
+                return
+            }
+
+            for drawing in self.canvasDrawings {
+                let image = drawing.image(from: canvasView.bounds, scale: UIScreen.main.scale)
+                self.saveImageToAlbum(image)
+            }
         }
     }
     
@@ -79,4 +155,8 @@ class NotePadViewModel: ObservableObject {
     }
 }
 
-
+enum lineType {
+    case normal
+    case dotted
+    case none
+}

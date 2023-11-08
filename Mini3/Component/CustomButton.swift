@@ -9,22 +9,68 @@ import SwiftUI
 
 struct CustomButton: View {
     var title: String
-    var action: () -> Void
     var backgroundColor: Color
     var textColor: Color
-    
+    var leftIcon: String? = ""
+    var rightIcon: String? = ""
+    var iconPadding: CGFloat = 4
+    var width: CGFloat = 0
+    var action: () -> Void
+
     var body: some View {
         Button(action: action) {
-            Text(title)
-                .font(.title2)
-                .fontWeight(.bold)
-                .foregroundColor(textColor)
-                .padding()
-                .frame(width: 200, height: 55)
-                .background(backgroundColor)
-                .cornerRadius(16)
+            HStack {
+                if let leftIcon = leftIcon {
+                    Image(systemName: leftIcon)
+                        .padding(.trailing, iconPadding)
+                }
+                
+                Text(title)
+                    .fontWeight(.bold)
+                
+                if let rightIcon = rightIcon {
+                    Image(systemName: rightIcon)
+                        .padding(.leading, iconPadding)
+                }
+            }
+            .foregroundColor(textColor)
+            .padding()
+            .frame(maxWidth: width == 0 ? .infinity : width)
+            .background(backgroundColor)
+            .cornerRadius(15)
         }
         .buttonStyle(PlainButtonStyle())
     }
 }
 
+struct CustomButtonStyle: ButtonStyle {
+    var title: String
+    var backgroundColor: Color
+    var textColor: Color
+    var leftIcon: String? = ""
+    var rightIcon: String? = ""
+    var iconPadding: CGFloat = 4
+    var width: CGFloat = 0
+    
+    func makeBody(configuration: Self.Configuration) -> some View {
+        HStack {
+            if let leftIcon = leftIcon {
+                Image(systemName: leftIcon)
+                    .padding(.trailing, iconPadding)
+            }
+            
+            Text(title)
+                .fontWeight(.bold)
+            
+            if let rightIcon = rightIcon {
+                Image(systemName: rightIcon)
+                    .padding(.leading, iconPadding)
+            }
+        }
+        .foregroundColor(textColor)
+        .padding()
+        .frame(maxWidth: width == 0 ? .infinity : width)
+        .background(backgroundColor)
+        .cornerRadius(15)
+    }
+}

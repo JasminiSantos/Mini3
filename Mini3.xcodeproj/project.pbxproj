@@ -13,6 +13,24 @@
 		24FE00772AF96E7200ACAA07 /* ConsultaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE00762AF96E7200ACAA07 /* ConsultaCard.swift */; };
 		24FE00792AFAAC4B00ACAA07 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE00782AFAAC4B00ACAA07 /* SearchBar.swift */; };
 		24FE007B2AFAB61900ACAA07 /* AddNewButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE007A2AFAB61900ACAA07 /* AddNewButton.swift */; };
+		84308FE42AF1821700811B50 /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84308FE32AF1821700811B50 /* CustomColor.swift */; };
+		84308FE62AF189D100811B50 /* CustomCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84308FE52AF189D100811B50 /* CustomCard.swift */; };
+		84308FE82AF1934700811B50 /* PetProfileCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84308FE72AF1934700811B50 /* PetProfileCard.swift */; };
+		84308FEA2AF1CC0A00811B50 /* QuantitySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84308FE92AF1CC0A00811B50 /* QuantitySelector.swift */; };
+		84308FEC2AF1D1A600811B50 /* DropDownPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84308FEB2AF1D1A600811B50 /* DropDownPicker.swift */; };
+		84308FEE2AF1FCBA00811B50 /* CustomHorizontalPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84308FED2AF1FCBA00811B50 /* CustomHorizontalPicker.swift */; };
+		84308FF02AF41C8E00811B50 /* MedicalRecordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84308FEF2AF41C8E00811B50 /* MedicalRecordViewModel.swift */; };
+		84308FF22AF44C4200811B50 /* Veterinarian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84308FF12AF44C4200811B50 /* Veterinarian.swift */; };
+		84308FF42AF44C5100811B50 /* Pet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84308FF32AF44C5100811B50 /* Pet.swift */; };
+		84308FF62AF44C6600811B50 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84308FF52AF44C6600811B50 /* Appointment.swift */; };
+		84308FFB2AF4B9CC00811B50 /* MedicalRecordExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84308FFA2AF4B9CC00811B50 /* MedicalRecordExportView.swift */; };
+		84308FFD2AF4BF6700811B50 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84308FFC2AF4BF6700811B50 /* Header.swift */; };
+		843090012AF5D7D500811B50 /* TesteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843090002AF5D7D500811B50 /* TesteView.swift */; };
+		843D07682AF1723D000FEA48 /* Especie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D07672AF1723D000FEA48 /* Especie.swift */; };
+		843D076A2AF173E2000FEA48 /* CondicaoCorporal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D07692AF173E2000FEA48 /* CondicaoCorporal.swift */; };
+		843D076C2AF17512000FEA48 /* RegisterType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D076B2AF17512000FEA48 /* RegisterType.swift */; };
+		843D076E2AF17677000FEA48 /* MedicalRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D076D2AF17677000FEA48 /* MedicalRecordView.swift */; };
+		843D07702AF17773000FEA48 /* CenteredHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D076F2AF17773000FEA48 /* CenteredHeader.swift */; };
 		8443A6F02AEF1EE200E5ECA5 /* Mini3App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443A6EF2AEF1EE200E5ECA5 /* Mini3App.swift */; };
 		8443A6F22AEF1EE200E5ECA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443A6F12AEF1EE200E5ECA5 /* ContentView.swift */; };
 		8443A6F42AEF1EE200E5ECA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8443A6F32AEF1EE200E5ECA5 /* Assets.xcassets */; };
@@ -27,9 +45,10 @@
 		846DAD572AEF38F500BB66FF /* DrawingToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD562AEF38F500BB66FF /* DrawingToolBar.swift */; };
 		846DAD592AEF4AF500BB66FF /* UndoRedoToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD582AEF4AF500BB66FF /* UndoRedoToolbar.swift */; };
 		846DAD5B2AEF4E6700BB66FF /* NotePadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD5A2AEF4E6700BB66FF /* NotePadViewModel.swift */; };
-		846DAD5D2AEF4FFF00BB66FF /* NotePadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD5C2AEF4FFF00BB66FF /* NotePadView.swift */; };
-		846DAD5F2AEF5F4000BB66FF /* PetInfoFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD5E2AEF5F4000BB66FF /* PetInfoFormView.swift */; };
-		846DAD612AEF60CB00BB66FF /* PetInfoFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD602AEF60CB00BB66FF /* PetInfoFormViewModel.swift */; };
+		84C16D592AF9964F004D4CF8 /* CustomLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C16D582AF9964F004D4CF8 /* CustomLabels.swift */; };
+		9F2C237D2AF4196A004CD389 /* PetProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C237C2AF4196A004CD389 /* PetProfileView.swift */; };
+		9F2C237F2AF54585004CD389 /* TutorProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C237E2AF54585004CD389 /* TutorProfileView.swift */; };
+		9F2C23812AF96D43004CD389 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C23802AF96D43004CD389 /* OnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +58,24 @@
 		24FE00762AF96E7200ACAA07 /* ConsultaCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsultaCard.swift; sourceTree = "<group>"; };
 		24FE00782AFAAC4B00ACAA07 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		24FE007A2AFAB61900ACAA07 /* AddNewButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewButton.swift; sourceTree = "<group>"; };
+		84308FE32AF1821700811B50 /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		84308FE52AF189D100811B50 /* CustomCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCard.swift; sourceTree = "<group>"; };
+		84308FE72AF1934700811B50 /* PetProfileCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileCard.swift; sourceTree = "<group>"; };
+		84308FE92AF1CC0A00811B50 /* QuantitySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantitySelector.swift; sourceTree = "<group>"; };
+		84308FEB2AF1D1A600811B50 /* DropDownPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownPicker.swift; sourceTree = "<group>"; };
+		84308FED2AF1FCBA00811B50 /* CustomHorizontalPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHorizontalPicker.swift; sourceTree = "<group>"; };
+		84308FEF2AF41C8E00811B50 /* MedicalRecordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalRecordViewModel.swift; sourceTree = "<group>"; };
+		84308FF12AF44C4200811B50 /* Veterinarian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Veterinarian.swift; sourceTree = "<group>"; };
+		84308FF32AF44C5100811B50 /* Pet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pet.swift; sourceTree = "<group>"; };
+		84308FF52AF44C6600811B50 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
+		84308FFA2AF4B9CC00811B50 /* MedicalRecordExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalRecordExportView.swift; sourceTree = "<group>"; };
+		84308FFC2AF4BF6700811B50 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		843090002AF5D7D500811B50 /* TesteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesteView.swift; sourceTree = "<group>"; };
+		843D07672AF1723D000FEA48 /* Especie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Especie.swift; sourceTree = "<group>"; };
+		843D07692AF173E2000FEA48 /* CondicaoCorporal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CondicaoCorporal.swift; sourceTree = "<group>"; };
+		843D076B2AF17512000FEA48 /* RegisterType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterType.swift; sourceTree = "<group>"; };
+		843D076D2AF17677000FEA48 /* MedicalRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalRecordView.swift; sourceTree = "<group>"; };
+		843D076F2AF17773000FEA48 /* CenteredHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredHeader.swift; sourceTree = "<group>"; };
 		8443A6EC2AEF1EE200E5ECA5 /* Mini3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mini3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8443A6EF2AEF1EE200E5ECA5 /* Mini3App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mini3App.swift; sourceTree = "<group>"; };
 		8443A6F12AEF1EE200E5ECA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -54,9 +91,10 @@
 		846DAD562AEF38F500BB66FF /* DrawingToolBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingToolBar.swift; sourceTree = "<group>"; };
 		846DAD582AEF4AF500BB66FF /* UndoRedoToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoRedoToolbar.swift; sourceTree = "<group>"; };
 		846DAD5A2AEF4E6700BB66FF /* NotePadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePadViewModel.swift; sourceTree = "<group>"; };
-		846DAD5C2AEF4FFF00BB66FF /* NotePadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePadView.swift; sourceTree = "<group>"; };
-		846DAD5E2AEF5F4000BB66FF /* PetInfoFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoFormView.swift; sourceTree = "<group>"; };
-		846DAD602AEF60CB00BB66FF /* PetInfoFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetInfoFormViewModel.swift; sourceTree = "<group>"; };
+		84C16D582AF9964F004D4CF8 /* CustomLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabels.swift; sourceTree = "<group>"; };
+		9F2C237C2AF4196A004CD389 /* PetProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileView.swift; sourceTree = "<group>"; };
+		9F2C237E2AF54585004CD389 /* TutorProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorProfileView.swift; sourceTree = "<group>"; };
+		9F2C23802AF96D43004CD389 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +108,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		84308FF92AF4A77E00811B50 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		8443A6E32AEF1EE200E5ECA5 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +134,7 @@
 		8443A6EE2AEF1EE200E5ECA5 /* Mini3 */ = {
 			isa = PBXGroup;
 			children = (
+				84308FF92AF4A77E00811B50 /* Extension */,
 				846DAD532AEF380300BB66FF /* Enum */,
 				846DAD462AEF2B6700BB66FF /* View */,
 				846DAD452AEF2B5E00BB66FF /* ViewModel */,
@@ -133,6 +179,13 @@
 				846DAD512AEF349900BB66FF /* NotePad.swift */,
 				846DAD562AEF38F500BB66FF /* DrawingToolBar.swift */,
 				846DAD582AEF4AF500BB66FF /* UndoRedoToolbar.swift */,
+				843D076F2AF17773000FEA48 /* CenteredHeader.swift */,
+				84308FE52AF189D100811B50 /* CustomCard.swift */,
+				84308FE72AF1934700811B50 /* PetProfileCard.swift */,
+				84308FE92AF1CC0A00811B50 /* QuantitySelector.swift */,
+				84308FEB2AF1D1A600811B50 /* DropDownPicker.swift */,
+				84308FED2AF1FCBA00811B50 /* CustomHorizontalPicker.swift */,
+				84308FFC2AF4BF6700811B50 /* Header.swift */,
 			);
 			path = Component;
 			sourceTree = "<group>";
@@ -140,6 +193,9 @@
 		846DAD442AEF2B5800BB66FF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				84308FF12AF44C4200811B50 /* Veterinarian.swift */,
+				84308FF32AF44C5100811B50 /* Pet.swift */,
+				84308FF52AF44C6600811B50 /* Appointment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,7 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				846DAD5A2AEF4E6700BB66FF /* NotePadViewModel.swift */,
-				846DAD602AEF60CB00BB66FF /* PetInfoFormViewModel.swift */,
+				84308FEF2AF41C8E00811B50 /* MedicalRecordViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -160,6 +216,12 @@
 				244B35D32AF1773F00E6B491 /* VetProfileView.swift */,
 				846DAD5C2AEF4FFF00BB66FF /* NotePadView.swift */,
 				846DAD5E2AEF5F4000BB66FF /* PetInfoFormView.swift */,
+				9F2C237C2AF4196A004CD389 /* PetProfileView.swift */,
+				9F2C237E2AF54585004CD389 /* TutorProfileView.swift */,
+				9F2C23802AF96D43004CD389 /* OnboardingView.swift */,
+				843D076D2AF17677000FEA48 /* MedicalRecordView.swift */,
+				84308FFA2AF4B9CC00811B50 /* MedicalRecordExportView.swift */,
+				843090002AF5D7D500811B50 /* TesteView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -168,6 +230,11 @@
 			isa = PBXGroup;
 			children = (
 				846DAD542AEF381500BB66FF /* DrawingTool.swift */,
+				843D07672AF1723D000FEA48 /* Especie.swift */,
+				843D07692AF173E2000FEA48 /* CondicaoCorporal.swift */,
+				843D076B2AF17512000FEA48 /* RegisterType.swift */,
+				84308FE32AF1821700811B50 /* CustomColor.swift */,
+				84C16D582AF9964F004D4CF8 /* CustomLabels.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -242,27 +309,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				846DAD5F2AEF5F4000BB66FF /* PetInfoFormView.swift in Sources */,
+				843D076C2AF17512000FEA48 /* RegisterType.swift in Sources */,
+				84308FEA2AF1CC0A00811B50 /* QuantitySelector.swift in Sources */,
+				84C16D592AF9964F004D4CF8 /* CustomLabels.swift in Sources */,
 				846DAD4A2AEF2D1400BB66FF /* CustomButton.swift in Sources */,
 				846DAD482AEF2BEE00BB66FF /* CloudKitService.swift in Sources */,
+				9F2C23812AF96D43004CD389 /* OnboardingView.swift in Sources */,
 				846DAD502AEF306A00BB66FF /* PDFReader.swift in Sources */,
 				244B35D42AF1773F00E6B491 /* VetProfileView.swift in Sources */,
+				24FE00732AF9630B00ACAA07 /* MenuView.swift in Sources */,
+				9F2C237D2AF4196A004CD389 /* PetProfileView.swift in Sources */,
+				84308FF02AF41C8E00811B50 /* MedicalRecordViewModel.swift in Sources */,
+				843D076A2AF173E2000FEA48 /* CondicaoCorporal.swift in Sources */,
+				846DAD502AEF306A00BB66FF /* PDFReader.swift in Sources */,
+				84308FE62AF189D100811B50 /* CustomCard.swift in Sources */,
+				84308FF62AF44C6600811B50 /* Appointment.swift in Sources */,
+				84308FEE2AF1FCBA00811B50 /* CustomHorizontalPicker.swift in Sources */,
 				846DAD552AEF381500BB66FF /* DrawingTool.swift in Sources */,
 				846DAD592AEF4AF500BB66FF /* UndoRedoToolbar.swift in Sources */,
-				24FE00732AF9630B00ACAA07 /* MenuView.swift in Sources */,
+				84308FE42AF1821700811B50 /* CustomColor.swift in Sources */,
+				843D07682AF1723D000FEA48 /* Especie.swift in Sources */,
 				846DAD522AEF349900BB66FF /* NotePad.swift in Sources */,
-				846DAD612AEF60CB00BB66FF /* PetInfoFormViewModel.swift in Sources */,
+				84308FFD2AF4BF6700811B50 /* Header.swift in Sources */,
+				84308FEC2AF1D1A600811B50 /* DropDownPicker.swift in Sources */,
 				846DAD4E2AEF2E3C00BB66FF /* CustomColorPicker.swift in Sources */,
 				24FE00752AF9632700ACAA07 /* PetCard.swift in Sources */,
+				84308FFB2AF4B9CC00811B50 /* MedicalRecordExportView.swift in Sources */,
 				846DAD572AEF38F500BB66FF /* DrawingToolBar.swift in Sources */,
 				24FE007B2AFAB61900ACAA07 /* AddNewButton.swift in Sources */,
 				846DAD5B2AEF4E6700BB66FF /* NotePadViewModel.swift in Sources */,
 				24FE00772AF96E7200ACAA07 /* ConsultaCard.swift in Sources */,
+				24FE00792AFAAC4B00ACAA07 /* SearchBar.swift in Sources */,
+				843D07702AF17773000FEA48 /* CenteredHeader.swift in Sources */,
+				84308FE82AF1934700811B50 /* PetProfileCard.swift in Sources */,
+				84308FF42AF44C5100811B50 /* Pet.swift in Sources */,
+				843D076E2AF17677000FEA48 /* MedicalRecordView.swift in Sources */,
 				8443A6F22AEF1EE200E5ECA5 /* ContentView.swift in Sources */,
 				8443A6F02AEF1EE200E5ECA5 /* Mini3App.swift in Sources */,
-				24FE00792AFAAC4B00ACAA07 /* SearchBar.swift in Sources */,
+				9F2C237F2AF54585004CD389 /* TutorProfileView.swift in Sources */,
+				843090012AF5D7D500811B50 /* TesteView.swift in Sources */,
+				84308FF22AF44C4200811B50 /* Veterinarian.swift in Sources */,
 				846DAD4C2AEF2D3500BB66FF /* CustomTextField.swift in Sources */,
-				846DAD5D2AEF4FFF00BB66FF /* NotePadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

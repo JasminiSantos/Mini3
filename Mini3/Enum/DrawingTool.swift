@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum DrawingTool {
+enum DrawingTool: Equatable {
     case pencil(Color)
     case eraser
 }
