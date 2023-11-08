@@ -29,7 +29,7 @@ struct PetProfileCard: View {
             
             VStack(alignment: .leading){
                 Text(title)
-                    .font(.system(size: 45, weight: .bold))
+                    .font(.system(size: 35, weight: .bold))
                     .foregroundColor(titleColor)
                 
                 HStack(alignment: .top, spacing: 20) {
@@ -37,9 +37,9 @@ struct PetProfileCard: View {
                         ForEach(itemsColumn1) { item in
                             HStack {
                                 Text(item.label + ":")
-                                    .font(.system(size: 20, weight: .semibold))
+                                    .font(.system(size: 16, weight: .semibold))
                                 Text(item.text)
-                                    .font(.system(size: 20))
+                                    .font(.system(size: 16))
                             }
                             .padding(.vertical, 2)
                             .multilineTextAlignment(.leading)
@@ -53,9 +53,9 @@ struct PetProfileCard: View {
                             ForEach(itemsColumn2) { item in
                                 HStack {
                                     Text(item.label + ":")
-                                        .font(.system(size: 20, weight: .semibold))
+                                        .font(.system(size: 16, weight: .semibold))
                                     Text(item.text)
-                                        .font(.system(size: 20))
+                                        .font(.system(size: 16))
                                 }
                                 .padding(.vertical, 2)
                                 .multilineTextAlignment(.leading)
@@ -75,9 +75,9 @@ struct PetProfileCard: View {
                 ForEach(itemsColumn3) { item in
                     HStack(alignment: .top) {
                         Text(item.label + ":")
-                            .font(.system(size: 20, weight: .semibold))
+                            .font(.system(size: 16, weight: .semibold))
                         Text(item.text)
-                            .font(.system(size: 20))
+                            .font(.system(size: 16))
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     .padding(.vertical, 2)

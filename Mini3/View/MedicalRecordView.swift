@@ -15,16 +15,6 @@ struct MedicalRecordView: View {
     @State private var isConfigured = false
     @Environment(\.dismiss) var dismiss
     
-    let column1Items = [
-        TextLabelPair(label: "Médico Veterinário", text: "Dr. Juliano Rocha Fernandes"),
-        TextLabelPair(label: "E-mail", text: "drjulianorocha@gmail.com")
-    ]
-    
-    let column2Items = [
-        TextLabelPair(label: "CRMV", text: "PR 000000"),
-        TextLabelPair(label: "Telefone", text: "41 0000 0000")
-    ]
-    
     @State private var gerado = false
     
     var body: some View {
@@ -48,12 +38,23 @@ struct MedicalRecordView: View {
         VStack{
             CenteredHeader(title: CustomLabels.appointment.rawValue, subtitle: viewModel.getCurrentDateFormatted(), backgroundColor: CustomColor.customDarkBlue, textColor: .white, arrowColor: CustomColor.customOrange)
             VStack{
-                CustomCard(column1Items: column1Items, column2Items: column2Items, isThereDivider: false, backgroundColor: CustomColor.customMint.opacity(0.3))
+                CustomCard(
+                    column1Items: [
+                        TextLabelPair(label: CustomLabels.vetDoctor.rawValue, text: viewModel.veterinarian.name),
+                        TextLabelPair(label: CustomLabels.email.rawValue, text: viewModel.veterinarian.email),
+                    ],
+                    column2Items: [
+                        TextLabelPair(label: CustomLabels.crmv.rawValue, text: viewModel.veterinarian.crmv),
+                        TextLabelPair(label: CustomLabels.phoneNumber.rawValue, text: viewModel.veterinarian.phoneNumber),
+                    ],
+                    isThereDivider: false,
+                    backgroundColor: CustomColor.customMint.opacity(0.3)
+                )
                 Spacer()
                     .frame(height: 50)
                 
                 PetProfileCard(
-                    image: Image("profileImage"), backgroundColor: CustomColor.customLightBlue.opacity(0.2), titleColor: CustomColor.customDarkBlue, title: "Toby",
+                    image: Image("profileImage"), backgroundColor: CustomColor.customLightBlue.opacity(0.2), titleColor: CustomColor.customDarkBlue, title: viewModel.pet.name,
                     itemsColumn1: [
                         TextLabelPair(label: CustomLabels.specie.rawValue, text: viewModel.pet.species),
                         TextLabelPair(label: CustomLabels.age.rawValue, text: viewModel.pet.age),
@@ -70,16 +71,16 @@ struct MedicalRecordView: View {
                     ]
                 )
                 VStack (alignment: .leading){
-                    Text("Dados de Peso")
+                    Text(CustomLabels.weightData.rawValue)
                         .font(.system(size: 30, weight: .semibold))
                         .foregroundColor(CustomColor.customDarkBlue)
                     
                     HStack{
-                        QuantitySelector(quantity: $viewModel.weight, label: "Peso", unit: "kg", backgroundColor: CustomColor.customLightBlue2, borderColor: CustomColor.customDarkBlue)
+                        QuantitySelector(quantity: $viewModel.weight, label: CustomLabels.weight.rawValue, unit: UnitMeasure.kilo.rawValue, backgroundColor: CustomColor.customLightBlue2, borderColor: CustomColor.customDarkBlue)
                         
                         Spacer()
                         
-                        DropdownPicker(selectedItem: $viewModel.selectedItem, items: viewModel.conditions, label: "Condição corporal",backgroundColor: CustomColor.customLightBlue2, borderColor: CustomColor.customDarkBlue)
+                        DropdownPicker(selectedItem: $viewModel.selectedItem, items: viewModel.conditions, label: CustomLabels.bodyCondition.rawValue,backgroundColor: CustomColor.customLightBlue2, borderColor: CustomColor.customDarkBlue)
                     }
                 }
                 .padding(.top)
@@ -91,7 +92,7 @@ struct MedicalRecordView: View {
     var notePadBoard: some View {
         VStack(alignment: .center) {
             VStack (alignment: .leading){
-                Text("Registro da consulta")
+                Text(CustomLabels.appointmentRecord.rawValue)
                     .font(.system(size: 30, weight: .semibold))
                     .foregroundColor(CustomColor.customDarkBlue)
                     .padding(.leading, 60)

@@ -100,7 +100,7 @@ struct VetProfileView: View {
         .padding(70)
         HStack{
             Spacer()
-            CustomButton(title: "Próximo", action: {}, backgroundColor: Color("Menta"), textColor: Color("Azul"))
+//            CustomButton(title: "Próximo", action: {}, backgroundColor: Color("Menta"), textColor: Color("Azul"))
         }
         .padding(.horizontal, 70)
     }

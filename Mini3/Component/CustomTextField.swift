@@ -11,6 +11,8 @@ struct CustomTextField: View {
     @Binding var text: String
     var placeholder: String
     var onCommit: () -> Void
+    var backgroundColor: Color
+    var borderColor: Color
     
     var body: some View {
         
