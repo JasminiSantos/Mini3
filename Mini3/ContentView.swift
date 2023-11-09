@@ -24,7 +24,7 @@ struct ContentView: View {
         
                         PDFReader(url: URL(string: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf")!)
         }
-        .padding() 
+        .padding()
     }
 }
 
