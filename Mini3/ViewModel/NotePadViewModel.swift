@@ -48,18 +48,19 @@ class NotePadViewModel: ObservableObject {
     }
     
     func initializeCanvasDrawings(count: Int) {
-        canvasDrawings = (0..<count).map { _ in PKDrawing() }
-    }
+        canvasDrawings = (0..<count).map { _ in PKDrawing() }    }
 
     var undoManager: UndoManager? {
         return canvasView?.undoManager
     }
     
     func undo() {
+        print("exists 1: \(canvasView != nil)")
         undoManager?.undo()
     }
     
     func redo() {
+        print("exists 2: \(canvasView != nil)")
         undoManager?.redo()
     }
     
