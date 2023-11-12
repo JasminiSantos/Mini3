@@ -8,161 +8,104 @@
 import SwiftUI
 
 struct PetProfileView: View {
-    struct Constants {
-      static let AzulEscuro: Color = Color(red: 0, green: 0.21, blue:0.35)
-      static let AzulClaro: Color = Color(red: 0.42, green: 0.6, blue: 0.77)
-      static let Branco: Color = Color(red: 0.94, green: 0.95, blue: 0.95)
 
-    }
-    @State private var nome = ""
-    @State private var idade = ""
-    @State private var raca = ""
-    @State private var pelagem = ""
+    @ObservedObject var viewModel = PetProfileViewModel(pet: PetModel(name: "Buddy", species: "Dog", breed: "Labrador", age: "5", gender: "Male", furColor: "Yellow", tutor: "John Doe", cpf: "123.456.789-00", address: "1234 Main St"), petOwner: PetOwnerModel(name: "John Doe", cpf: "123.456.789-00", phoneNumber: "555-1234", address: "1234 Elm Street", email: "johndoe@example.com"))
     
     var body: some View {
-        ZStack {
-            //retângulo de fundo
-            Rectangle()
-                .foregroundColor(.clear)
-                .frame(maxWidth: 730, maxHeight: 630)
-                .background(Color(red: 0.88, green: 0.92, blue: 0.95))
-                .cornerRadius(30)
+        VStack {
             
             VStack {
                 HStack {
-                    //DADOS DA DIREITA
-                    VStack (alignment: .leading, spacing: 8){
+                    VStack (alignment: .leading, spacing: 20){
                         Text("Dados do Pet")
                             .font(.system(size: 32, weight: .bold))
                             .foregroundColor(Constants.AzulEscuro)
                             .padding(.bottom, 25)
-                        
-                        Text("Nome do animal:")
-                            .font(.system(size: 24, weight: .medium))
-                            .foregroundColor(.black)
-                        
-                        TextField("", text: $nome)
-                            .font(.system(size: 24, weight: .medium))
-                            .foregroundColor(Constants.AzulEscuro)
-                            .frame(width: 300, height: 50)
-                            .background(.white)
-                            .cornerRadius(14)
-                            .overlay(RoundedRectangle(cornerRadius: 14).inset(by: 0.5).stroke(Constants.AzulClaro, lineWidth: 1))
-                        
-                        
-                        Text("Idade:")
-                            .font(.system(size: 24, weight: .medium))
-                            .foregroundColor(.black)
-                        
-                        TextField("", text: $idade)
-                            .font(.system(size: 24, weight: .medium))
-                            .foregroundColor(Constants.AzulEscuro)
-                            .frame(width: 300, height: 50)
-                            .background(.white)
-                            .cornerRadius(14)
-                            .overlay(RoundedRectangle(cornerRadius: 14).inset(by: 0.5).stroke(Constants.AzulClaro, lineWidth: 1))
-                        
-                        Text("Espécie:")
-                            .font(.system(size: 24, weight: .medium))
-                            .foregroundColor(.black)
-                        
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 250, height: 50)
-                            .background(Color(red: 0.42, green: 0.6, blue: 0.77).opacity(0.35))
-                            .background(.white)
-                            .cornerRadius(14)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 14)
-                                    .inset(by: 0.5)
-                                    .stroke(Constants.AzulClaro, lineWidth: 1)
-                            )
-                        
-                        Text("Raça:")
-                            .font(.system(size: 24, weight: .medium))
-                            .foregroundColor(.black)
-                        
-                        TextField("", text: $raca)
-                            .font(.system(size: 24, weight: .medium))
-                            .foregroundColor(Constants.AzulEscuro)
-                            .frame(width: 300, height: 50)
-                            .background(.white)
-                            .cornerRadius(14)
-                            .overlay(RoundedRectangle(cornerRadius: 14).inset(by: 0.5).stroke(Constants.AzulClaro, lineWidth: 1))
-                        
-                    }//FIM DA VSTACK
-                    
-                    VStack (alignment: .leading, spacing: 8){
-                        HStack (alignment: .top) {
-                            ZStack{
-                                //BOTÃO DE ADD IMAGEM
-                                Rectangle()
-                                    .foregroundColor(.clear)
-                                    .frame(width: 170, height: 170)
-                                    .background(.white)
-                                    .cornerRadius(360)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 360)
-                                            .inset(by: -7)
-                                            .stroke(Constants.AzulClaro, lineWidth: 7)
-                                    )
-                                
-                                Image(systemName: "pawprint.fill")
-                                    .font(.system(size: 70, weight: .bold))
-                                    .foregroundColor(Color(red: 0.8, green: 0.86, blue: 0.92))
-                                
-                                Button(action: {}) {
-                                    Image(systemName: "plus")
-                                        .font(.system(size: 32, weight: .bold))
-                                        .foregroundColor(Constants.Branco)
-                                        .frame(width: 60, height: 60)
-                                        .background(Constants.AzulClaro)
-                                        .cornerRadius(360)
-                                }
-                                .padding(.top, 130)
-                                .padding(.trailing, 100)
-                            }
-                            .padding(.bottom, 60)
-                            .padding(.leading, 60)
+                        VStack(alignment: .leading) {
+                            Text("Nome do animal:")
+                                .font(.system(size: 24, weight: .medium))
+                                .foregroundColor(.black)
                             
-                            //BOTÃO DE EDIÇÃO
-//                            Button(action: {}) {
-//                                Image(systemName: "square.and.pencil")
-//                                    .font(.system(size: 28, weight: .bold))
-//                                    .foregroundColor(Constants.Branco)
-//                                    .frame(width: 50, height: 50)
-//                                    .background(Constants.AzulEscuro)
-//                                    .cornerRadius(360)
-//                            }
+                            CustomTextField(text: $viewModel.pet.name, placeholder: "", backgroundColor: .white, borderColor: Constants.AzulClaro, onCommit: {
+                                
+                            })
                         }
                         
-                        Text("Sexo: ")
-                            .font(.system(size: 24, weight: .medium))
-                            .foregroundColor(.black)
+                        VStack(alignment: .leading) {
+                            Text("Idade:")
+                                .font(.system(size: 24, weight: .medium))
+                                .foregroundColor(.black)
+                            
+                            CustomTextField(text: $viewModel.pet.age, placeholder: "", backgroundColor: .white, borderColor: Constants.AzulClaro, onCommit: {
+                                
+                            })
+                        }
                         
-                        Rectangle()
-                            .foregroundColor(.clear)
-                            .frame(width: 250, height: 50)
-                            .background(Color(red: 0.42, green: 0.6, blue: 0.77).opacity(0.35))
-                            .background(.white)
-                            .cornerRadius(14)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 14)
-                                    .inset(by: 0.5)
-                                    .stroke(Constants.AzulClaro, lineWidth: 1)
+                        VStack(alignment: .leading) {
+                            Text("Espécie:")
+                                .font(.system(size: 24, weight: .medium))
+                                .foregroundColor(.black)
+                            
+                            DropdownPicker(selectedItem: $viewModel.selectedSpecie, items: viewModel.allSpecies,backgroundColor: Color(red: 0.42, green: 0.6, blue: 0.77).opacity(0.35), borderColor: Constants.AzulClaro)
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            Text("Raça:")
+                                .font(.system(size: 24, weight: .medium))
+                                .foregroundColor(.black)
+                            
+                            
+                            CustomTextField(text: $viewModel.pet.breed, placeholder: "", backgroundColor: .white, borderColor: Constants.AzulClaro, onCommit: {
+                                
+                            })
+                        }
+                        
+                    }//FIM DA VSTACK
+
+                    VStack (alignment: .center, spacing: 8){
+                        HStack (alignment: .top) {
+                            PetProfileImage(
+                                circleWidth: 230,
+//                                showEditButton: .constant(true),
+                                addImageAction: {},
+                                editImageAction: {}
                             )
+                            
+                            //BOTÃO DE EDIÇÃO
+                            if viewModel.currentState == .editing {
+                                Button(action: {}) {
+                                    Image(systemName: "square.and.pencil")
+                                        .font(.system(size: 28, weight: .bold))
+                                        .foregroundColor(Constants.Branco)
+                                        .frame(width: 50, height: 50)
+                                        .background(Constants.AzulEscuro)
+                                        .cornerRadius(360)
+                                }
+                            }
+                        }
                         
-                        Text("Pelagem:")
-                            .font(.system(size: 24, weight: .medium))
-                            .foregroundColor(.black)
+                        Spacer()
+                            .frame(height: 85)
                         
-                        TextField("", text: $pelagem)
-                            .font(.system(size: 24, weight: .medium))
-                            .foregroundColor(Constants.AzulEscuro)
-                            .frame(width: 300, height: 50)
-                            .background(.white)
-                            .cornerRadius(14)
-                            .overlay(RoundedRectangle(cornerRadius: 14).inset(by: 0.5).stroke(Constants.AzulClaro, lineWidth: 1))
+                        VStack {
+                            VStack(alignment: .leading) {
+                                Text("Sexo: ")
+                                    .font(.system(size: 24, weight: .medium))
+                                    .foregroundColor(.black)
+                                
+                                DropdownPicker(selectedItem: $viewModel.selectedGender, items: viewModel.allPetGenders,backgroundColor: Color(red: 0.42, green: 0.6, blue: 0.77).opacity(0.35), borderColor: Constants.AzulClaro)
+                            }
+                            
+                            VStack(alignment: .leading) {
+                                Text("Pelagem:")
+                                    .font(.system(size: 24, weight: .medium))
+                                    .foregroundColor(.black)
+                                
+                                CustomTextField(text: $viewModel.pet.furColor, placeholder: "", backgroundColor: .white, borderColor: Constants.AzulClaro, onCommit: {
+                                    
+                                })
+                            }
+                        }
                         
                         
                     }//FIM DA VSTACK
@@ -171,32 +114,39 @@ struct PetProfileView: View {
                     
                 }
                 //BOTÃO DE SALVAR ALTERAÇÕES
-//                Button(action: {}){
-//                    Image(systemName: "checkmark")
-//                        .font(.system(size: 32, weight: .bold))
-//                        .foregroundColor(Constants.Branco)
-//                    
-//                    Text("Salvar alterações")
-//                        .font(.system(size: 32, weight: .bold))
-//                        .multilineTextAlignment(.center)
-//                        .foregroundColor(Constants.Branco)
-//                }
-//                .foregroundColor(.clear)
-//                .frame(width: 350, height: 60)
-//                .background(Constants.AzulClaro)
-//                .cornerRadius(18)
-//                .padding(.top, 30)
-                
+                if viewModel.currentState == .editing {
+                    Button(action: {}){
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 32, weight: .bold))
+                            .foregroundColor(Constants.Branco)
+                        
+                        Text("Salvar alterações")
+                            .font(.system(size: 32, weight: .bold))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(Constants.Branco)
+                    }
+                    .foregroundColor(.clear)
+                    .frame(width: 350, height: 60)
+                    .background(Constants.AzulClaro)
+                    .cornerRadius(18)
+                    .padding(.top, 30)
+                }
                 Image(systemName: "pawprint.fill")
                     .font(.system(size: 32, weight: .bold))
                     .foregroundColor(Constants.AzulClaro)
-                    .padding(.top, 30)
+                    .padding(.vertical, 30)
                 
             }//FIM DA VSTACK
+            .padding(40)
             
             
         }//FIM DA ZSTACK
-        .background(.clear)
+        .background(
+            Rectangle()
+                .foregroundColor(.clear)
+                .background(Color(red: 0.88, green: 0.92, blue: 0.95))
+                .cornerRadius(30)
+        )
         .ignoresSafeArea(.all)
     }
     
