@@ -26,6 +26,9 @@ enum CustomLabels: String, CaseIterable {
     case weightData = "Dados de Peso"
     case bodyCondition = "Condição corporal"
     case appointmentRecord = "Registro da consulta"
+    case createProfile = "Criar Perfil"
+    case createPetProfile = "Criar perfil do animal"
+    case animalProfile = "Perfil do Animal"
 }
 
 enum UnitMeasure: String {

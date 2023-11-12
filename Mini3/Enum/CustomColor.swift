@@ -51,6 +51,9 @@ enum CustomColor {
     static var customDarkBlue2: Color {
         return Color(hex: "003559")
     }
+    static var customLightOrange: Color {
+        return Color(hex: "FCEAC6")
+    }
     
 }
 

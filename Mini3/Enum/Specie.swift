@@ -1,5 +1,5 @@
 //
-//  Especie.swift
+//  Specie.swift
 //  Mini3
 //
 //  Created by Jasmini Rebecca Gomes dos Santos on 31/10/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Especie: String, CaseIterable {
+enum Specie: String, CaseIterable {
     case felino = "Felino"
     case anfibio = "Anfíbio"
     case asinino = "Asinino"
