@@ -12,7 +12,9 @@ struct MenuView: View {
     @State var nomePet: String = ""
     @State var nomeTutor: String = ""
     @State var especie: String = ""
+    @State var editing: Bool = false
 
+    @ObservedObject var viewModel: VetProfileViewModel
     
     var body: some View {
         ZStack{
@@ -38,7 +40,10 @@ struct MenuView: View {
                 HStack{
                     SearchBar(text: $text, placeholder: "Pesquisar", onCommit: ({}), cor: "AzulClaro")
                     Spacer()
-                    AddNewButton(cor: "AzulClaro", title: "Novo paciente")
+                    NavigationLink(destination: CreateProfileView(), label: {
+                        AddNewButton(cor: "AzulClaro", title: "Novo paciente")
+                    })
+
 
                 }
                 .padding(.horizontal, 50)
@@ -47,15 +52,22 @@ struct MenuView: View {
 
                 ScrollView(.horizontal){
                     HStack{
-                        
-                        PetCard(onClick: "", onCommit: ( { }), nomePet: "Simba", nomeTutor: "Simone Silva", especie: "Canino")
-                            .padding(.trailing)
-                        PetCard(onClick: "", onCommit: ( { }), nomePet: "Oliver", nomeTutor: "Otávio Silva", especie: "Felino")
-                            .padding(.trailing)
-                        PetCard(onClick: "", onCommit: ( { }), nomePet: "Thor", nomeTutor: "John Appleseed", especie: "Canino")
-                            .padding(.trailing)
-                        PetCard(onClick: "", onCommit: ( { }), nomePet: "Mel", nomeTutor: "Ana França", especie: "Canino")
-                            .padding(.trailing)
+                        NavigationLink(destination: PetProfileDetailsView(), label: {
+                            PetCard(onClick: "", onCommit: ( { }), nomePet: "Simba", nomeTutor: "Simone Silva", especie: "Canino")
+                                .padding(.trailing)
+                        })
+                        NavigationLink(destination: PetProfileDetailsView(), label: {
+                            PetCard(onClick: "", onCommit: ( { }), nomePet: "Oliver", nomeTutor: "Otávio Silva", especie: "Felino")
+                                .padding(.trailing)
+                        })
+                        NavigationLink(destination: PetProfileDetailsView(), label: {
+                            PetCard(onClick: "", onCommit: ( { }), nomePet: "Thor", nomeTutor: "John Appleseed", especie: "Canino")
+                                .padding(.trailing)
+                        })
+                        NavigationLink(destination: PetProfileDetailsView(), label: {
+                            PetCard(onClick: "", onCommit: ( { }), nomePet: "Mel", nomeTutor: "Ana França", especie: "Canino")
+                                .padding(.trailing)
+                        })
 
 
                     }
@@ -80,42 +92,38 @@ struct MenuView: View {
                     
                 }
                 .padding(.leading, 50)
-                HStack{
-                    SearchBar(text: $text, placeholder: "Pesquisar", onCommit: ({}), cor: "Amarelo")
-                    Spacer()
-                    AddNewButton(cor: "Amarelo", title: "Nova consulta")
-
-                }
-                .padding(.horizontal, 50)
-                .padding(.bottom)
-                
-                ScrollView(.horizontal) {
+                VStack {
                     HStack{
-                        ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
-                            .padding(.trailing)
-
-                        ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
-                            .padding(.trailing)
-
-                        ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
-                            .padding(.trailing)
-
-                        ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
-                            .padding(.trailing)
-
-                        
+                        SearchBar(text: $text, placeholder: "Pesquisar", onCommit: ({}), cor: "Amarelo")
+                        Spacer()
+                    }
+                    .padding(.horizontal, 50)
+                    .padding(.bottom)
+                    
+                    ScrollView(.horizontal) {
+                        HStack{
+                            ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
+                                .padding(.trailing)
+                            
+                            ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
+                                .padding(.trailing)
+                            
+                            ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
+                                .padding(.trailing)
+                            
+                            ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
+                                .padding(.trailing)
+                            
+                            
+                            
+                        }
+                        .padding(.leading, 50)
                         
                     }
-                    
-                    .padding(.leading, 50)
-
                 }
             }
         }
         .ignoresSafeArea()
+        .navigationBarBackButtonHidden()
     }
-}
-
-#Preview {
-    MenuView()
 }
