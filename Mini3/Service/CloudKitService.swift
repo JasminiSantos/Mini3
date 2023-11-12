@@ -7,16 +7,29 @@
 
 import Foundation
 import CloudKit
+import SwiftUI
 
 class CloudKitService {
     private let container: CKContainer
     private let database: CKDatabase
     
-    init(containerIdentifier: String = "iCloud.com.ADA.Nano3") {
+    init(containerIdentifier: String = "iCloud.group.ADA.Mini3") {
         self.container = CKContainer(identifier: containerIdentifier)
         self.database = container.privateCloudDatabase
     }
-
+    
+    func fetchUserID(completion: @escaping (Result<String, Error>) -> Void) {
+        container.fetchUserRecordID { (recordID, error) in
+            DispatchQueue.main.async {
+                if let userID = recordID?.recordName {
+                    completion(.success(userID))
+                } else if let error = error {
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+    
     func saveObject(recordType: String, objectData: [String: CKRecordValue], completion: @escaping (Error?) -> Void) {
         let newRecord = CKRecord(recordType: recordType)
         for (key, value) in objectData {
@@ -90,6 +103,4 @@ class CloudKitService {
             }
         }
     }
-
-    
 }
