@@ -6,24 +6,61 @@
 //
 
 import SwiftUI
-import PencilKit
+import CloudKit
 
 struct ContentView: View {
-    @State var textInput: String = ""
-    
+    @ObservedObject var viewModel = VetProfileViewModel()
+
+    @ViewBuilder
+    private var currentView: some View {
+        if viewModel.viewState == .loading  {
+            SplashView()
+        } else if viewModel.viewState == .menu {
+            MenuView(viewModel: viewModel)
+        } else if viewModel.viewState == .vetProfile || viewModel.viewState == .iCloudError {
+            VetProfileView(viewModel: viewModel)
+        }
+    }
+
     var body: some View {
         NavigationStack {
-            VStack {
-                NavigationLink(destination: MedicalRecordView(), label: {
-                    Text("Acessar")
-                })
-            }
-            .padding()
+            currentView
         }
-        .padding() 
         .accentColor(CustomColor.customOrange)
+        .onAppear {
+            viewModel.viewState = .loading
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+                if viewModel.viewState == .loading {
+                    viewModel.checkiCloudStatus()
+                }
+            }
+        }
+        .alert(isPresented: $viewModel.showiCloudAlert) {
+            alert
+        }
+        
+        var alert: Alert {
+            guard let alertType = viewModel.activeAlert else {
+                return Alert(title: Text("Error"), message: Text("Unknown error."))
+            }
+
+            switch alertType {
+            case .iCloudError:
+                return Alert(
+                    title: Text("iCloud Account Required"),
+                    message: Text("Please sign in to your iCloud account to enable all features of this app."),
+                    primaryButton: .default(Text("Open Settings"), action: viewModel.openSettings),
+                    secondaryButton: .cancel()
+                )
+            case .validationError(let message):
+                return Alert(title: Text("Validation Error"), message: Text(message))
+            case .customError(let message):
+                return Alert(title: Text("Error"), message: Text(message))
+            }
+        }
     }
 }
+
 
 #Preview {
     ContentView()
