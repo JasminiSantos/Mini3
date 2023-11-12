@@ -28,7 +28,6 @@ struct MedicalRecordView: View {
             .onAppear {
                 if !isConfigured {
                     notePadViewModel.initializeCanvasDrawings(count: viewModel.registerTypesArray.count)
-                    print(notePadViewModel.canvasDrawings)
                     isConfigured = true
                 }
             }
@@ -146,6 +145,15 @@ struct MedicalRecordView: View {
                     Button("Gerar PDF") {
                         notePadViewModel.saveDrawing()
                         gerado = true
+                        if let pdfURL = exportToPDF() {
+                            viewModel.savePDFToCloudKit(pdfURL: pdfURL) { error in
+                                if let error = error {
+                                    print("Error saving PDF to CloudKit: \(error.localizedDescription)")
+                                } else {
+                                    print("PDF saved to CloudKit successfully")
+                                }
+                            }
+                        }
                     }
                     .buttonStyle(CustomButtonStyle(title: "Exportar", backgroundColor: CustomColor.customGreen, textColor: CustomColor.customDarkBlue2, rightIcon: "checkmark", width: 200))
                 } else {
@@ -154,11 +162,6 @@ struct MedicalRecordView: View {
                             .buttonStyle(CustomButtonStyle(title: "Exportar", backgroundColor: CustomColor.customGreen, textColor: CustomColor.customDarkBlue2, rightIcon: "checkmark", width: 200))
                     }
                 }
-//                NavigationLink(destination: PDFReader(url: exportToPDF()!), label: {
-//                    
-//                })
-//                .buttonStyle(CustomButtonStyle(title: "Exportar", backgroundColor: CustomColor.customGreen, textColor: CustomColor.customDarkBlue2, rightIcon: "checkmark", width: 200))
-
                 
             }
             .padding(.top)
@@ -193,17 +196,4 @@ struct MedicalRecordView: View {
         }
         return outputFileURL
     }
-}
-
-struct ViewHeightKey: PreferenceKey {
-    typealias Value = CGFloat
-    static var defaultValue: CGFloat = 0
-    static func reduce(value: inout Value, nextValue: () -> Value) {
-        value += nextValue()
-    }
-}
-
-
-class SharedHeight: ObservableObject {
-    @Published var contentHeight: CGFloat = 0
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PDFKit
+import CloudKit
 
 @MainActor
 class MedicalRecordViewModel: ObservableObject {
@@ -21,19 +22,27 @@ class MedicalRecordViewModel: ObservableObject {
     @Published var selectedRegister: Int = RegisterType.motivoAnamnese.rawValue
     @Published var weight: Int = 0
     
+    let cloudKitService = CloudKitService()
+    
 
     func getCurrentDateFormatted() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "pt_BR") // Brazilian Portuguese locale
+        dateFormatter.locale = Locale(identifier: "pt_BR")
         dateFormatter.dateFormat = "dd MMM yyyy - HH:mm"
 
-        var dateString = dateFormatter.string(from: Date())
-        
-        // Replace the full month abbreviation with "set." if it's September
-//        if Calendar.current.component(.month, from: Date()) == 9 {
-//            dateString = dateString.replacingOccurrences(of: "set", with: "set")
-//        }
+        let dateString = dateFormatter.string(from: Date())
         
         return dateString
+    }
+    
+    func savePDFToCloudKit(pdfURL: URL, completion: @escaping (Error?) -> Void) {
+
+        let pdfAsset = CKAsset(fileURL: pdfURL)
+        
+
+        let objectData: [String: CKRecordValue] = ["pdfFile": pdfAsset]
+        
+
+        cloudKitService.saveObject(recordType: "PDF", objectData: objectData, completion: completion)
     }
 }
