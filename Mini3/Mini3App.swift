@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct Mini3App: App {
+    @ObservedObject var viewModel = VetProfileViewModel()
     var body: some Scene {
         WindowGroup {
-            VetProfileView()
+            ContentView()
         }
     }
 }
