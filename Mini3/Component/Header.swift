@@ -9,8 +9,8 @@ import SwiftUI
 
 struct Header: View {
     var title: String
-    var subtitle: String
-    var subtitle2: String
+    var subtitle: String?
+    var subtitle2: String?
     var backgroundColor: Color
     var textColor: Color
     var arrowColor: Color
@@ -18,27 +18,36 @@ struct Header: View {
     
     var body: some View {
         HStack(alignment: .center) {
-            Spacer()
-            VStack(alignment: .leading, spacing: 5) {
-                Text(title)
-                    .font(.system(size: 45, weight: .semibold))
-                    .foregroundColor(textColor)
+
+            HStack {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(title)
+                        .font(.system(size: 40, weight: .semibold))
+                        .foregroundColor(textColor)
+                }
+                .padding(.leading)
+
+                Spacer()
+                
+                VStack (alignment: .leading, spacing: 5){
+                    if let subtitle = subtitle {
+                        Text(subtitle)
+                            .font(.system(size: 23, weight: .semibold))
+                            .foregroundColor(textColor)
+                    }
+                    if let subtitle2 = subtitle2 {
+                        Text(subtitle2)
+                            .font(.system(size: 23, weight: .semibold))
+                            .foregroundColor(textColor)
+                    }
+                }
             }
-            .padding(.leading)
-            Spacer()
-            VStack (alignment: .leading, spacing: 5){
-                Text(subtitle)
-                    .font(.system(size: 30, weight: .semibold))
-                    .foregroundColor(textColor)
-                Text(subtitle2)
-                    .font(.system(size: 30, weight: .semibold))
-                    .foregroundColor(textColor)
-            }
-            Spacer()
+            .padding(.horizontal, 40)
+
         }
         .edgesIgnoringSafeArea(.all)
         .frame(maxWidth: .infinity)
-        .padding(.vertical)
+        .padding(.vertical, 30)
         .padding(.top)
         .background(backgroundColor)
         .clipShape(

@@ -10,18 +10,20 @@ import SwiftUI
 struct DropdownPicker: View {
     @Binding var selectedItem: String
     var items: [String]
-    var label: String
+    var label: String?
     var backgroundColor: Color
     var borderColor: Color
     var visibleButtons: Bool = true
     var enabled: Bool = true
     
     var body: some View {
-        HStack{
-            Text(label + ":")
-                .font(.system(size: 20, weight: .regular))
+        HStack (alignment: .center){
+            if let label = label {
+                Text(label + ":")
+                    .font(.system(size: 20, weight: .regular))
+            }
             Menu {
-                Picker(label, selection: $selectedItem) {
+                Picker((label ?? items.first)!, selection: $selectedItem) {
                     ForEach(items, id: \.self) { item in
                         Text(item).tag(item)
                     }
@@ -33,8 +35,7 @@ struct DropdownPicker: View {
                             .padding(.leading, 25)
                         Spacer()
                     }
-                    .frame(width: 300, height: 40)
-                    .padding(5)
+                    .padding(.vertical)
                     .foregroundColor(.black)
                     .background(backgroundColor)
                     .cornerRadius(15)
@@ -47,9 +48,17 @@ struct DropdownPicker: View {
                             .resizable()
                             .frame(width: 40, height: 40)
                             .foregroundColor(CustomColor.customLightBlue)
+                            .padding(.leading)
                     }
                 }
             }.disabled(!enabled)
         }
+        .frame(
+              minWidth: 0,
+              maxWidth: .infinity,
+              minHeight: 0,
+              maxHeight: .infinity,
+              alignment: .topLeading
+            )
     }
 }

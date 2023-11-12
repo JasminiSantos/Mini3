@@ -13,33 +13,28 @@ struct AddNewButton: View {
     var title: String
     
     var body: some View {
-        Button(action: {
-            print("vai para view de novo prontuário")
-            
-        }, label: {
-            ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .foregroundColor(Color(.systemGray5))
-                    .opacity(0.3)
-                    .overlay(
-                        
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(Color(cor), lineWidth: 3)
-                    )
-                    .frame(width: 280, height: 60)
-                HStack {
-                    Image(systemName: "plus")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("Azul"))
+        ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .foregroundColor(Color(.systemGray5))
+                .opacity(0.3)
+                .overlay(
                     
-                    Text(title)
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color("Azul"))
-                }
+                    RoundedRectangle(cornerRadius: 20)
+                        .stroke(Color(cor), lineWidth: 3)
+                )
+                .frame(width: 280, height: 60)
+            HStack {
+                Image(systemName: "plus")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color("Azul"))
+                
+                Text(title)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color("Azul"))
             }
-        })
         }
     }
+}
 

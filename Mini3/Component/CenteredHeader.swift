@@ -21,10 +21,10 @@ struct CenteredHeader: View {
             
             VStack(alignment: .center, spacing: 5) {
                 Text(title)
-                    .font(.system(size: 45, weight: .semibold))
+                    .font(.system(size: 40, weight: .semibold))
                     .foregroundColor(textColor)
                 Text(subtitle)
-                    .font(.system(size: 30, weight: .semibold))
+                    .font(.system(size: 23, weight: .semibold))
                     .foregroundColor(textColor)
             }
             

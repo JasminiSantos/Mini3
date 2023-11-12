@@ -32,28 +32,23 @@ struct PetCard: View {
                 HStack(alignment: .top) {
                     Spacer()
                     
-                    Button {
-                        print("ir para perfil do Pet")
-                        
-                    } label: {
-                        Image(systemName: "ellipsis.circle.fill")
-                            .font(.largeTitle)
-                            .foregroundColor(Color("Azul"))
-                            .padding(.trailing)
-                    }
+                    Image(systemName: "ellipsis.circle.fill")
+                        .font(.largeTitle)
+                        .foregroundColor(Color("Azul"))
+                        .padding(.trailing)
                     
                 }
                 .frame(width: 350)
                 
                 Circle()
-                            .frame(width: 210, height: 210) // Adjust the size of the circle
-                            .foregroundColor(.blue) // Change the fill color of the circle
-                            .overlay(
-                                Circle()
-                                    .stroke(Color("AzulClaro"), lineWidth: 7) // Adjust the border color and width
-                            )
-                
-                            .padding(.bottom)
+                    .frame(width: 210, height: 210)
+                    .foregroundColor(.customGray)
+                    .overlay(
+                        Circle()
+                            .stroke(Color("AzulClaro"), lineWidth: 7)
+                    )
+        
+                    .padding(.bottom)
                 
                 
                 Text(nomePet)

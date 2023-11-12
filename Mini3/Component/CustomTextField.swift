@@ -10,25 +10,32 @@ import SwiftUI
 struct CustomTextField: View {
     @Binding var text: String
     var placeholder: String
+    var backgroundColor: Color
+    var borderColor: Color
     var onCommit: () -> Void
-//    var backgroundColor: Color
-//    var borderColor: Color
     
     var body: some View {
         
         ZStack {
-            // White background
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color.white)
-                .frame(height: 60) // Adjust the height as needed
+                .fill(backgroundColor)
+                .frame(height: 60)
             
-            // Mint border
             RoundedRectangle(cornerRadius: 20)
-                .stroke(Color("Menta"), lineWidth: 2)
-                .frame(height: 60) // Should match the height of the background
+                .stroke(borderColor, lineWidth: 1)
+                .frame(height: 60)
             
             TextField(placeholder, text: $text, onCommit: onCommit)
+                .font(.system(size: 24, weight: .regular))
                 .padding(.horizontal,20)
         }
+        .frame(
+              minWidth: 0,
+              maxWidth: .infinity,
+              minHeight: 0,
+              maxHeight: .infinity,
+              alignment: .topLeading
+            )
     }
+    
 }

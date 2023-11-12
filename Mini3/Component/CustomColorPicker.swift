@@ -79,8 +79,9 @@ struct CustomColorPicker: View {
                 }
             }
     }
-    enum Orientation {
-        case horizontal
-        case vertical
-    }
+}
+
+enum Orientation {
+    case horizontal
+    case vertical
 }

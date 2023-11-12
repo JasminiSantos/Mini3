@@ -21,23 +21,11 @@ struct NotePad: UIViewRepresentable {
         else if viewModel.lineType == .normal {
             linedBackground = LineBackgroundView()
         }
-        if let linedBackground = linedBackground{
-            linedBackground.backgroundColor = .clear
-            linedBackground.translatesAutoresizingMaskIntoConstraints = false
-            container.addSubview(linedBackground)
-            
-            NSLayoutConstraint.activate([
-                linedBackground.topAnchor.constraint(equalTo: container.topAnchor),
-                linedBackground.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-                linedBackground.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-                linedBackground.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            ])
-        }
+        
         let canvas = PKCanvasView()
-        canvas.backgroundColor = .clear
+        canvas.backgroundColor = .white
         canvas.delegate = context.coordinator
         canvas.tool = PKInkingTool(.pen, color: UIColor(viewModel.selectedColor), width: 5)
-//        canvas.allowsFingerDrawing = true
         canvas.drawingPolicy = .anyInput
         viewModel.canvasView = canvas
         canvas.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +37,20 @@ struct NotePad: UIViewRepresentable {
             canvas.leadingAnchor.constraint(equalTo: container.leadingAnchor),
             canvas.trailingAnchor.constraint(equalTo: container.trailingAnchor),
         ])
+        
+        if let linedBackground = linedBackground {
+            linedBackground.backgroundColor = .clear
+            linedBackground.translatesAutoresizingMaskIntoConstraints = false
+            container.addSubview(linedBackground)
+            linedBackground.isUserInteractionEnabled = false
+            
+            NSLayoutConstraint.activate([
+                linedBackground.topAnchor.constraint(equalTo: container.topAnchor),
+                linedBackground.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+                linedBackground.leadingAnchor.constraint(equalTo: container.leadingAnchor),
+                linedBackground.trailingAnchor.constraint(equalTo: container.trailingAnchor),
+            ])
+        }
         
         return container
     }
