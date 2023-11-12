@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Pet: Codable {
     var name: String
-    var species: String
+    var specie: String
     var breed: String
     var age: String
     var gender: String
@@ -40,4 +40,10 @@ class PetModel: ObservableObject {
         self.cpf = cpf
         self.address = address
     }
+}
+
+enum PetGender: String, CaseIterable, Codable {
+    case male = "Macho"
+    case female = "Fêmea"
+    case unknown = "Desconhecido"
 }
