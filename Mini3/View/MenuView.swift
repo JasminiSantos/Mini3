@@ -8,13 +8,8 @@
 import SwiftUI
 
 struct MenuView: View {
-    @State var text: String = ""
-    @State var nomePet: String = ""
-    @State var nomeTutor: String = ""
-    @State var especie: String = ""
-    @State var editing: Bool = false
 
-    @ObservedObject var viewModel: VetProfileViewModel
+    @StateObject var viewModel: MenuViewModel
     
     var body: some View {
         ZStack{
@@ -38,9 +33,9 @@ struct MenuView: View {
                 .padding(.leading, 50)
                 
                 HStack{
-                    SearchBar(text: $text, placeholder: "Pesquisar", onCommit: ({}), cor: "AzulClaro")
+                    SearchBar(text: $viewModel.petSearch, placeholder: "Pesquisar", onCommit: ({}), cor: "AzulClaro")
                     Spacer()
-                    NavigationLink(destination: CreateProfileView(), label: {
+                    NavigationLink(destination: CreateProfileView(viewModel: PetProfileViewModel()), label: {
                         AddNewButton(cor: "AzulClaro", title: "Novo paciente")
                     })
 
@@ -50,31 +45,18 @@ struct MenuView: View {
                 .padding(.bottom)
 
 
-                ScrollView(.horizontal){
-                    HStack{
-                        NavigationLink(destination: PetProfileDetailsView(), label: {
-                            PetCard(onClick: "", onCommit: ( { }), nomePet: "Simba", nomeTutor: "Simone Silva", especie: "Canino")
-                                .padding(.trailing)
-                        })
-                        NavigationLink(destination: PetProfileDetailsView(), label: {
-                            PetCard(onClick: "", onCommit: ( { }), nomePet: "Oliver", nomeTutor: "Otávio Silva", especie: "Felino")
-                                .padding(.trailing)
-                        })
-                        NavigationLink(destination: PetProfileDetailsView(), label: {
-                            PetCard(onClick: "", onCommit: ( { }), nomePet: "Thor", nomeTutor: "John Appleseed", especie: "Canino")
-                                .padding(.trailing)
-                        })
-                        NavigationLink(destination: PetProfileDetailsView(), label: {
-                            PetCard(onClick: "", onCommit: ( { }), nomePet: "Mel", nomeTutor: "Ana França", especie: "Canino")
-                                .padding(.trailing)
-                        })
-
-
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(viewModel.petsWithOwners, id: \.pet.id) { petWithOwner in
+                            NavigationLink(destination: PetProfileDetailsView(viewModel: PetProfileViewModel(pet: petWithOwner.pet, petOwner: petWithOwner.owner!, veterinarian: viewModel.veterinarian))) {
+                                PetCard(onClick: {}, onCommit: {}, nomePet: petWithOwner.pet.name, nomeTutor: petWithOwner.owner?.name ?? "Unknown", especie: petWithOwner.pet.specie)
+                                    .padding(.trailing)
+                            }
+                        }
                     }
                     .padding(.leading, 50)
-
-                    
                 }
+                .frame(width: 210, height: 210)
                 .padding(.bottom, 60)
                 
                 HStack{
@@ -94,7 +76,7 @@ struct MenuView: View {
                 .padding(.leading, 50)
                 VStack {
                     HStack{
-                        SearchBar(text: $text, placeholder: "Pesquisar", onCommit: ({}), cor: "Amarelo")
+                        SearchBar(text: $viewModel.appointmentSearch, placeholder: "Pesquisar", onCommit: ({}), cor: "Amarelo")
                         Spacer()
                     }
                     .padding(.horizontal, 50)
@@ -125,5 +107,8 @@ struct MenuView: View {
         }
         .ignoresSafeArea()
         .navigationBarBackButtonHidden()
+        .onAppear {
+            viewModel.fetchPetData()
+        }
     }
 }
