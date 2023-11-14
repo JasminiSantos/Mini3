@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateProfileView: View {
     
-    @ObservedObject var viewModel = PetProfileViewModel(pet: PetModel(name: "Buddy", species: "Dog", breed: "Labrador", age: "5", gender: "Male", furColor: "Yellow", tutor: "John Doe", cpf: "123.456.789-00", address: "1234 Main St"), petOwner: PetOwnerModel(name: "John Doe", cpf: "123.456.789-00", phoneNumber: "555-1234", address: "1234 Elm Street", email: "johndoe@example.com"))
+    @ObservedObject var viewModel: PetProfileViewModel
     
     var header: some View {
         Header(title: CustomLabels.createPetProfile.rawValue, backgroundColor: CustomColor.customDarkBlue, textColor: .white, arrowColor: CustomColor.customOrange)
@@ -31,22 +31,33 @@ struct CreateProfileView: View {
         .onAppear {
             viewModel.currentState = .creating
         }
+        .alert(isPresented: $viewModel.showAlert) {
+            alert
+        }
     }
     
     var petProfile: some View {
-        PetProfileView()
+        PetProfileView(viewModel: viewModel)
     }
     var tutorProfile: some View {
-        TutorProfileView()
+        TutorProfileView(viewModel: viewModel)
     }
     
     var completeButton: some View {
         HStack {
             Spacer()
             CustomButton(title: "Próximo", backgroundColor: CustomColor.customGreen, textColor: CustomColor.customDarkBlue, rightIcon: "chevron.right", width: 200, action: {
-                
+                viewModel.savePetAndOwner()
             })
         }
+    }
+    
+    var alert: Alert {
+        Alert(
+            title: Text("Error"),
+            message: Text(viewModel.alertMessage ?? "Um erro ocorreu. Por favor tente mais tarde!"),
+            dismissButton: .default(Text("OK"))
+        )
     }
 }
 
