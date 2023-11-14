@@ -10,7 +10,7 @@ import CloudKit
 
 struct VetProfileView: View {
     @ObservedObject var viewModel: VetProfileViewModel
-    @ObservedObject private var notePadViewModel = NotePadViewModel(lineType: .none)
+    @StateObject private var notePadViewModel = NotePadViewModel(lineType: .none)
     
     var header: some View {
         Header(title: CustomLabels.createProfile.rawValue, backgroundColor: CustomColor.customDarkBlue, textColor: .white, arrowColor: CustomColor.customOrange)
@@ -20,7 +20,7 @@ struct VetProfileView: View {
     var body: some View {
         ScrollView {
             VStack {
-                NavigationLink(destination: MenuView(viewModel: viewModel), isActive: $viewModel.navigateToMenuView) {
+                NavigationLink(destination: MenuView(viewModel: MenuViewModel(veterinarian: viewModel.veterinarian!)), isActive: $viewModel.navigateToMenuView) {
                     EmptyView()
                 }
                 header
@@ -42,7 +42,10 @@ struct VetProfileView: View {
             viewModel.checkiCloudStatus()
         }
         .alert(isPresented: $viewModel.showiCloudAlert) {
-            alert
+            iCloudAlert
+        }
+        .alert(isPresented: $viewModel.showAlert) {
+            errorAlert
         }
     }
     
@@ -119,6 +122,7 @@ struct VetProfileView: View {
                     }, redoAction: {
                         notePadViewModel.redo()
                     })
+
                     HStack {
                         Spacer()
                         Text("Esta assinatura será utilizada nos documentos de prontuários")
@@ -154,15 +158,7 @@ struct VetProfileView: View {
         HStack{
             Spacer()
             CustomButton(title: "Próximo", backgroundColor: Color("Menta"), textColor: .black, rightIcon: "chevron.right", width: 200, action: {
-                viewModel.checkiCloudStatus()
-                if !viewModel.showiCloudAlert && !viewModel.accountExists && viewModel.isChecked{
-                    notePadViewModel.saveDrawing()
-                    notePadViewModel.getImages()
-                    if let image = notePadViewModel.canvasImages.first {
-                        viewModel.signatureImage = image
-                    }
-                    viewModel.createDoctorData()
-                }
+                viewModel.submit(notePadViewModel: notePadViewModel)
             })
         }
         .padding(.top, 30)
@@ -185,7 +181,7 @@ struct VetProfileView: View {
         .padding(.top)
     }
     
-    var alert: Alert {
+    var iCloudAlert: Alert {
         guard let alertType = viewModel.activeAlert else {
             return Alert(title: Text("Error"), message: Text("Unknown error."))
         }
@@ -204,10 +200,16 @@ struct VetProfileView: View {
             return Alert(title: Text("Error"), message: Text(message))
         }
     }
+    
+    var errorAlert: Alert {
+        Alert(
+            title: Text("Validation Error"),
+            message: Text(viewModel.alertMessage),
+            dismissButton: .default(Text("OK"), action: {
+                viewModel.alertMessage = ""
+            })
+        )
+    }
 
 
-}
-
-#Preview {
-    PetProfileView()
 }

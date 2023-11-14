@@ -84,6 +84,7 @@ class NotePadViewModel: ObservableObject {
     }
     
     func getImages() {
+        self.canvasImages = []
         guard let canvasView = self.canvasView else {
             print("CanvasView is not initialized")
             return

@@ -24,7 +24,6 @@ class VetProfileViewModel: ObservableObject {
     
     @Published var isSuccess: Bool = false
     @Published var isLoading: Bool = false
-    @Published var requestInProgress: Bool = false
     @Published var accountExists: Bool = false
     
     @Published var showiCloudAlert = false
@@ -39,7 +38,8 @@ class VetProfileViewModel: ObservableObject {
     let cloudKitService = CloudKitService()
     
     func createDoctorData() {
-        guard validateInput() else {
+        
+        guard validateDoctorData() else {
             print("Invalid input.")
             return
         }
@@ -58,10 +58,7 @@ class VetProfileViewModel: ObservableObject {
         }
         
         let signatureAsset = CKAsset(fileURL: fileURL)
-        cloudKitService.fetchUserID { result in
-            
-        }
-        let veterinarian = Veterinarian(id: UUID(), name: name, email: email, crmv: crmv, cpf: cpf, phoneNumber: phone, signatureUrl: "signatureUrl")
+        let veterinarian = Veterinarian(id: UUID(),name: name, email: email, crmv: crmv, cpf: cpf, phoneNumber: phone, signatureUrl: "signatureUrl")
         
         let doctorData: [String: CKRecordValue] = [
             "id": veterinarian.id.uuidString as CKRecordValue,
@@ -81,40 +78,12 @@ class VetProfileViewModel: ObservableObject {
                 print("There was an error saving the doctor account: \(error)")
             } else {
                 print("Doctor account created successfully!")
+                self.veterinarian = veterinarian
                 self.navigateToMenuView = true
             }
         }
     }
     
-    func fetchDoctorData() {
-            guard let id = veterinarian?.id else {
-                print("Veterinarian ID is nil.")
-                return
-            }
-            
-            cloudKitService.fetchRecordByID(recordType: recordType, recordID: id) { [weak self] record, error in
-                DispatchQueue.main.async {
-                    if let error = error {
-                        print("Error fetching doctor data: \(error)")
-                    } else if let record = record, let asset = record["signature"] as? CKAsset {
-                        self?.name = record["name"] as? String ?? ""
-                        self?.crmv = record["crmv"] as? String ?? ""
-                        self?.phone = record["phone"] as? String ?? ""
-                        self?.email = record["email"] as? String ?? ""
-                        self?.cpf = record["cpf"] as? String ?? ""
-                        
-                        if let fileURL = asset.fileURL {
-                            do {
-                                let imageData = try Data(contentsOf: fileURL)
-                                self?.signatureImage = UIImage(data: imageData)
-                            } catch {
-                                print("Error loading image data: \(error)")
-                            }
-                        }
-                    }
-                }
-            }
-        }
     
     func fetchDoctors(completion: @escaping (Bool) -> Void) {
         cloudKitService.fetchRecords(recordType: recordType) { [weak self] records, error in
@@ -200,8 +169,54 @@ class VetProfileViewModel: ObservableObject {
         }
     }
     
-    func validateInput() -> Bool {
-        return !name.isEmpty && !crmv.isEmpty && !phone.isEmpty && !email.isEmpty && !cpf.isEmpty && signatureImage != nil
+    func validateDoctorData() -> Bool {
+        var errors: [String] = []
+
+        if name.isEmpty {
+            errors.append("Name cannot be empty.")
+        }
+        if email.isEmpty || !email.contains("@") {
+            errors.append("Invalid email address.")
+        }
+        if crmv.isEmpty {
+            errors.append("CRMV cannot be empty.")
+        }
+        if cpf.filter(\.isNumber).count != 11 {
+            errors.append("CPF must have 11 digits.")
+        }
+        if phone.filter(\.isNumber).count < 8 {
+            errors.append("Phone number must be at least 8 digits.")
+        }
+        if signatureImage == nil {
+            errors.append("Signature image must be provided.")
+        }
+        if !isChecked {
+            errors.append("Terms and Conditions need to be checked.")
+        }
+        
+        if !errors.isEmpty {
+            alertMessage = errors.joined(separator: "\n")
+            showAlert = true
+            return false
+        }
+
+        return errors.isEmpty
+    }
+    
+    @MainActor func submit(notePadViewModel: NotePadViewModel) {
+        notePadViewModel.saveDrawing()
+        notePadViewModel.getImages()
+
+        if let image = notePadViewModel.canvasImages.first {
+            self.signatureImage = image
+        }
+        checkiCloudStatus()
+        if validateDoctorData() {
+            
+            if !showiCloudAlert && !accountExists && isChecked {
+                createDoctorData()
+            }
+        }
     }
 }
 
