@@ -26,4 +26,5 @@ enum Specie: String, CaseIterable {
     case roedor = "Roedor"
     case reptil = "Réptil"
     case suino = "Suíno"
+    case mamifero = "Mamífero"
 }
