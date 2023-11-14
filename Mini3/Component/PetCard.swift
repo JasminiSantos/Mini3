@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 struct PetCard: View {
-    var onClick: String
+    var onClick: () -> Void // Changed from String to closure
     var onCommit: () -> Void
     var nomePet: String
     var nomeTutor: String
@@ -40,15 +40,19 @@ struct PetCard: View {
                 }
                 .frame(width: 350)
                 
-                Circle()
-                    .frame(width: 210, height: 210)
-                    .foregroundColor(.customGray)
-                    .overlay(
-                        Circle()
-                            .stroke(Color("AzulClaro"), lineWidth: 7)
-                    )
-        
-                    .padding(.bottom)
+                ZStack {
+                    Circle()
+                        .fill(Color.white)
+                        .frame(width: 210, height: 210)
+                        .overlay(
+                            Circle()
+                                .stroke(PetProfileView.Constants.AzulClaro, lineWidth: 7)
+                        )
+                    
+                    Image(systemName: "pawprint.fill")
+                        .font(.system(size: 210 / 2.5, weight: .bold))
+                        .foregroundColor(Color(red: 0.8, green: 0.86, blue: 0.92))
+                }
                 
                 
                 Text(nomePet)
