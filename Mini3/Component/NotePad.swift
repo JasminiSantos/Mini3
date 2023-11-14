@@ -57,7 +57,7 @@ struct NotePad: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIView, context: Context) {
         guard let canvasView = viewModel.canvasView else { return }
-        
+
         if viewModel.clearCanvas {
             canvasView.drawing = PKDrawing()
             DispatchQueue.main.async {
@@ -130,5 +130,14 @@ class DottedLineBackgroundView: UIView {
             context.strokePath()
             startY += lineSpacing
         }
+    }
+}
+
+extension PKDrawing {
+    var isEmpty: Bool {
+        return self.strokes.isEmpty 
+    }
+    var isNotEmpty: Bool {
+        return !self.strokes.isEmpty
     }
 }
