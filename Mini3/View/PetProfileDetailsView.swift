@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PetProfileDetailsView: View {
     
-    @ObservedObject var viewModel = PetProfileViewModel(pet: PetModel(name: "Buddy", species: "Dog", breed: "Labrador", age: "5", gender: "Male", furColor: "Yellow", tutor: "John Doe", cpf: "123.456.789-00", address: "1234 Main St"), petOwner: PetOwnerModel(name: "John Doe", cpf: "123.456.789-00", phoneNumber: "555-1234", address: "1234 Elm Street", email: "johndoe@example.com"))
+    @ObservedObject var viewModel: PetProfileViewModel
     
     var header: some View {
         Header(title: CustomLabels.animalProfile.rawValue, backgroundColor: CustomColor.customDarkBlue, textColor: .white, arrowColor: CustomColor.customOrange)
@@ -40,10 +40,10 @@ struct PetProfileDetailsView: View {
     }
     
     var petProfile: some View {
-        PetProfileView()
+        PetProfileView(viewModel: viewModel)
     }
     var tutorProfile: some View {
-        TutorProfileView()
+        TutorProfileView(viewModel: viewModel)
     }
     
     var picker: some View {
@@ -64,7 +64,7 @@ struct PetProfileDetailsView: View {
             HStack{
                 SearchBar(text: $viewModel.search, placeholder: "Pesquisar", onCommit: ({}), cor: "Amarelo")
                 Spacer()
-                NavigationLink(destination: MedicalRecordView(), label: {
+                NavigationLink(destination: MedicalRecordView(viewModel: MedicalRecordViewModel(veterinarian: viewModel.veterinarian, pet: viewModel.pet, petOwner: viewModel.petOwner)), label: {
                     AddNewButton(cor: "Amarelo", title: "Nova consulta")
                 })
                 
