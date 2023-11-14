@@ -20,27 +20,34 @@ struct Header: View {
         HStack(alignment: .center) {
 
             HStack {
-                VStack(alignment: .leading, spacing: 5) {
+                VStack(alignment: .center, spacing: 5) {
                     Text(title)
                         .font(.system(size: 40, weight: .semibold))
                         .foregroundColor(textColor)
                 }
                 .padding(.leading)
-
-                Spacer()
                 
-                VStack (alignment: .leading, spacing: 5){
-                    if let subtitle = subtitle {
+                if let subtitle = subtitle {
+                    Spacer()
+                    VStack (alignment: .leading, spacing: 5){
                         Text(subtitle)
                             .font(.system(size: 23, weight: .semibold))
                             .foregroundColor(textColor)
-                    }
-                    if let subtitle2 = subtitle2 {
-                        Text(subtitle2)
-                            .font(.system(size: 23, weight: .semibold))
-                            .foregroundColor(textColor)
+                        if let subtitle2 = subtitle2 {
+                            Text(subtitle2)
+                                .font(.system(size: 23, weight: .semibold))
+                                .foregroundColor(textColor)
+                        }
                     }
                 }
+                
+//                VStack (alignment: .leading, spacing: 5){
+//                    if let subtitle = subtitle {
+//                        Text(subtitle)
+//                            .font(.system(size: 23, weight: .semibold))
+//                            .foregroundColor(textColor)
+//                    }
+//                }
             }
             .padding(.horizontal, 40)
 
