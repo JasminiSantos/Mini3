@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PetProfileView: View {
 
-    @ObservedObject var viewModel = PetProfileViewModel(pet: PetModel(name: "Buddy", species: "Dog", breed: "Labrador", age: "5", gender: "Male", furColor: "Yellow", tutor: "John Doe", cpf: "123.456.789-00", address: "1234 Main St"), petOwner: PetOwnerModel(name: "John Doe", cpf: "123.456.789-00", phoneNumber: "555-1234", address: "1234 Elm Street", email: "johndoe@example.com"))
+    @ObservedObject var viewModel: PetProfileViewModel
     
     var body: some View {
         VStack {
@@ -62,30 +62,32 @@ struct PetProfileView: View {
                         
                     }//FIM DA VSTACK
 
-                    VStack (alignment: .center, spacing: 8){
-                        HStack (alignment: .top) {
+                    VStack (spacing: 8){
+                        HStack(alignment: .top) {
+                            Spacer()
                             PetProfileImage(
-                                circleWidth: 230,
+                                circleWidth: 270,
 //                                showEditButton: .constant(true),
                                 addImageAction: {},
                                 editImageAction: {}
                             )
-                            
                             //BOTÃO DE EDIÇÃO
                             if viewModel.currentState == .editing {
-                                Button(action: {}) {
-                                    Image(systemName: "square.and.pencil")
-                                        .font(.system(size: 28, weight: .bold))
-                                        .foregroundColor(Constants.Branco)
-                                        .frame(width: 50, height: 50)
-                                        .background(Constants.AzulEscuro)
-                                        .cornerRadius(360)
-                                }
+                                Spacer()
+                                Image(systemName: "square.and.pencil")
+                                    .font(.system(size: 28, weight: .bold))
+                                    .foregroundColor(Constants.Branco)
+                                    .frame(width: 50, height: 50)
+                                    .background(Constants.AzulEscuro)
+                                    .cornerRadius(360)
+                            }
+                            else {
+                                Spacer()
                             }
                         }
                         
                         Spacer()
-                            .frame(height: 85)
+                            .frame(height: 47)
                         
                         VStack {
                             VStack(alignment: .leading) {
@@ -115,7 +117,9 @@ struct PetProfileView: View {
                 }
                 //BOTÃO DE SALVAR ALTERAÇÕES
                 if viewModel.currentState == .editing {
-                    Button(action: {}){
+                    Button(action: {
+                        viewModel.updatePet()
+                    }){
                         Image(systemName: "checkmark")
                             .font(.system(size: 32, weight: .bold))
                             .foregroundColor(Constants.Branco)
@@ -150,9 +154,4 @@ struct PetProfileView: View {
         .ignoresSafeArea(.all)
     }
     
-}
-
-
-#Preview {
-    PetProfileView()
 }
