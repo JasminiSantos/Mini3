@@ -16,7 +16,7 @@ struct ContentView: View {
         if viewModel.viewState == .loading  {
             SplashView()
         } else if viewModel.viewState == .menu {
-            MenuView(viewModel: viewModel)
+            MenuView(viewModel: MenuViewModel(veterinarian: viewModel.veterinarian!))
         } else if viewModel.viewState == .vetProfile || viewModel.viewState == .iCloudError {
             VetProfileView(viewModel: viewModel)
         }
