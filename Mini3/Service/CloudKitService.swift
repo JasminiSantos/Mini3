@@ -104,3 +104,59 @@ class CloudKitService {
         }
     }
 }
+
+extension CloudKitService {
+    
+    // Generic save method
+    func save(record: CKRecord, completion: @escaping (Result<CKRecord, Error>) -> Void) {
+        database.save(record) { savedRecord, error in
+            DispatchQueue.main.async {
+                if let savedRecord = savedRecord {
+                    completion(.success(savedRecord))
+                } else if let error = error {
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+    
+    func fetchRecord(withID recordID: CKRecord.ID, completion: @escaping (Result<CKRecord, Error>) -> Void) {
+        database.fetch(withRecordID: recordID) { record, error in
+            DispatchQueue.main.async {
+                if let record = record {
+                    completion(.success(record))
+                } else if let error = error {
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+    
+    func createReference(from parentRecord: CKRecord, to childRecord: CKRecord, withKey key: String) {
+        let reference = CKRecord.Reference(recordID: parentRecord.recordID, action: .deleteSelf)
+        childRecord[key] = reference
+    }
+    
+    func update(record: CKRecord, withData data: [String: CKRecordValue], completion: @escaping (Error?) -> Void) {
+        for (key, value) in data {
+            record[key] = value
+        }
+        
+        save(record: record, completion: { result in
+            switch result {
+            case .success(_):
+                completion(nil)
+            case .failure(let error):
+                completion(error)
+            }
+        })
+    }
+    
+    func delete(recordID: CKRecord.ID, completion: @escaping (Error?) -> Void) {
+        database.delete(withRecordID: recordID) { _, error in
+            DispatchQueue.main.async {
+                completion(error)
+            }
+        }
+    }
+}
