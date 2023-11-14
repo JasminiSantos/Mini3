@@ -10,32 +10,33 @@ import PDFKit
 
 @MainActor
 struct MedicalRecordView: View {
-    @ObservedObject private var viewModel = MedicalRecordViewModel()
+    @ObservedObject var viewModel: MedicalRecordViewModel
     @ObservedObject private var notePadViewModel = NotePadViewModel(lineType: .dotted)
-    @State private var isConfigured = false
     @Environment(\.dismiss) var dismiss
     
     @State private var gerado = false
     
+    var header: some View {
+        CenteredHeader(title: CustomLabels.appointment.rawValue, subtitle: viewModel.getCurrentDateFormatted(), backgroundColor: CustomColor.customDarkBlue, textColor: .white, arrowColor: CustomColor.customOrange)
+    }
+    
     var body: some View {
         NavigationStack {
             ScrollView {
+                header
                 petDetails
                 notePadBoard
             }
             .edgesIgnoringSafeArea(.all)
             .padding(.horizontal, 60)
             .onAppear {
-                if !isConfigured {
-                    notePadViewModel.initializeCanvasDrawings(count: viewModel.registerTypesArray.count)
-                    isConfigured = true
-                }
+                viewModel.fetchDoctorData()
+                notePadViewModel.initializeCanvasDrawings(count: viewModel.registerTypesArray.count)
             }
         }
     }
     var petDetails: some View {
         VStack{
-            CenteredHeader(title: CustomLabels.appointment.rawValue, subtitle: viewModel.getCurrentDateFormatted(), backgroundColor: CustomColor.customDarkBlue, textColor: .white, arrowColor: CustomColor.customOrange)
             VStack{
                 CustomCard(
                     column1Items: [
@@ -55,7 +56,7 @@ struct MedicalRecordView: View {
                 PetProfileCard(
                     image: Image("profileImage"), backgroundColor: CustomColor.customLightBlue.opacity(0.2), titleColor: CustomColor.customDarkBlue, title: viewModel.pet.name,
                     itemsColumn1: [
-                        TextLabelPair(label: CustomLabels.specie.rawValue, text: viewModel.pet.species),
+                        TextLabelPair(label: CustomLabels.specie.rawValue, text: viewModel.pet.specie),
                         TextLabelPair(label: CustomLabels.age.rawValue, text: viewModel.pet.age),
                         TextLabelPair(label: CustomLabels.gender.rawValue, text: viewModel.pet.gender)
                     ],
@@ -64,9 +65,9 @@ struct MedicalRecordView: View {
                         TextLabelPair(label: CustomLabels.furColor.rawValue, text: viewModel.pet.furColor)
                     ],
                     itemsColumn3: [
-                        TextLabelPair(label: CustomLabels.tutor.rawValue, text: viewModel.pet.tutor),
-                        TextLabelPair(label: CustomLabels.cpf.rawValue, text: viewModel.pet.cpf),
-                        TextLabelPair(label: CustomLabels.address.rawValue, text: viewModel.pet.address)
+                        TextLabelPair(label: CustomLabels.tutor.rawValue, text: viewModel.petOwner.name),
+                        TextLabelPair(label: CustomLabels.cpf.rawValue, text: viewModel.petOwner.cpf),
+                        TextLabelPair(label: CustomLabels.address.rawValue, text: viewModel.petOwner.address)
                     ]
                 )
                 VStack (alignment: .leading){
@@ -80,6 +81,7 @@ struct MedicalRecordView: View {
                         Spacer()
                         
                         DropdownPicker(selectedItem: $viewModel.selectedItem, items: viewModel.conditions, label: CustomLabels.bodyCondition.rawValue,backgroundColor: CustomColor.customLightBlue2, borderColor: CustomColor.customDarkBlue)
+                            .padding(.leading, 30)
                     }
                 }
                 .padding(.top)
@@ -173,7 +175,7 @@ struct MedicalRecordView: View {
     
     func exportToPDF() -> URL? {
         
-        let outputFileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("MedicalRecord.pdf")
+        let outputFileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(self.viewModel.pet.name.lowercased())_appointment_\(viewModel.getCurrentDateFormatted3().date).pdf")
         let pageSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 1.8)
         
 

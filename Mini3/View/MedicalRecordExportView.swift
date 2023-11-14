@@ -10,20 +10,12 @@ import SwiftUI
 @MainActor
 struct MedicalRecordExportView: View {
     
-    weak var viewModel: MedicalRecordViewModel?
-    weak var notePadViewModel: NotePadViewModel?
+    @ObservedObject var viewModel: MedicalRecordViewModel
+    @ObservedObject var notePadViewModel: NotePadViewModel
     
-    let column1Items = [
-        TextLabelPair(label: "Médico Veterinário", text: "Dr. Juliano Rocha Fernandes"),
-        TextLabelPair(label: "E-mail", text: "drjulianorocha@gmail.com")
-    ]
-    
-    let column2Items = [
-        TextLabelPair(label: "CRMV", text: "PR 000000"),
-        TextLabelPair(label: "Telefone", text: "41 0000 0000")
-    ]
     var header: some View {
-        Header(title: "Prontuário de Consulta", subtitle: "23 de setembro de 2023", subtitle2: "Horário: 15:00", backgroundColor: CustomColor.customDarkBlue, textColor: .white, arrowColor: CustomColor.customOrange)
+        Header(title: CustomLabels.appointment.rawValue, subtitle: viewModel.getCurrentDateFormatted2().date, subtitle2: viewModel.getCurrentDateFormatted2().time, backgroundColor: CustomColor.customDarkBlue, textColor: .white, arrowColor: CustomColor.customOrange)
+        
     }
     
     var body: some View {
@@ -40,25 +32,36 @@ struct MedicalRecordExportView: View {
     var petDetails: some View {
         VStack{
             VStack{
-                CustomCard(column1Items: column1Items, column2Items: column2Items, isThereDivider: false, backgroundColor: CustomColor.customMint.opacity(0.3))
+                CustomCard(
+                    column1Items: [
+                        TextLabelPair(label: CustomLabels.vetDoctor.rawValue, text: viewModel.veterinarian.name),
+                        TextLabelPair(label: CustomLabels.email.rawValue, text: viewModel.veterinarian.email),
+                    ],
+                    column2Items: [
+                        TextLabelPair(label: CustomLabels.crmv.rawValue, text: viewModel.veterinarian.crmv),
+                        TextLabelPair(label: CustomLabels.phoneNumber.rawValue, text: viewModel.veterinarian.phoneNumber),
+                    ],
+                    isThereDivider: false,
+                    backgroundColor: CustomColor.customMint.opacity(0.3)
+                )
                 Spacer()
                     .frame(height: 50)
                 
                 PetProfileCard(
-                    image: Image("profileImage"), backgroundColor: CustomColor.customLightBlue.opacity(0.2), titleColor: CustomColor.customDarkBlue , title: "Toby",
+                    image: Image("profileImage"), backgroundColor: CustomColor.customLightBlue.opacity(0.2), titleColor: CustomColor.customDarkBlue, title: viewModel.pet.name,
                     itemsColumn1: [
-                        TextLabelPair(label: "Espécie", text: "felino"),
-                        TextLabelPair(label: "Idade", text: "9 anos"),
-                        TextLabelPair(label: "Sexo", text: "macho")
+                        TextLabelPair(label: CustomLabels.specie.rawValue, text: viewModel.pet.specie),
+                        TextLabelPair(label: CustomLabels.age.rawValue, text: viewModel.pet.age),
+                        TextLabelPair(label: CustomLabels.gender.rawValue, text: viewModel.pet.gender)
                     ],
                     itemsColumn2: [
-                        TextLabelPair(label: "Raça", text: "SRD"),
-                        TextLabelPair(label: "Pelagem", text: "laranja")
+                        TextLabelPair(label: CustomLabels.breed.rawValue, text: viewModel.pet.breed),
+                        TextLabelPair(label: CustomLabels.furColor.rawValue, text: viewModel.pet.furColor)
                     ],
                     itemsColumn3: [
-                        TextLabelPair(label: "Tutor", text: "Mariana Silva"),
-                        TextLabelPair(label: "CPF", text: "0000000-00"),
-                        TextLabelPair(label: "Endereço", text: "Rua da Liberdade, 39 - Cidade")
+                        TextLabelPair(label: CustomLabels.tutor.rawValue, text: viewModel.petOwner.name),
+                        TextLabelPair(label: CustomLabels.cpf.rawValue, text: viewModel.petOwner.cpf),
+                        TextLabelPair(label: CustomLabels.address.rawValue, text: viewModel.petOwner.address)
                     ]
                 )
                 VStack (alignment: .leading){
@@ -67,11 +70,12 @@ struct MedicalRecordExportView: View {
                         .foregroundColor(CustomColor.customDarkBlue)
                     
                     HStack{
-                        QuantitySelector(quantity: .constant(10), label: "Peso", unit: "kg", backgroundColor: CustomColor.customGray2, borderColor: CustomColor.customGray2, visibleButtons: false, enabled: false)
+                        QuantitySelector(quantity: $viewModel.weight, label: CustomLabels.weight.rawValue, unit: UnitMeasure.kilo.rawValue, backgroundColor: CustomColor.customLightBlue2, borderColor: CustomColor.customDarkBlue, visibleButtons: false, enabled: false)
                         
                         Spacer()
                         
-//                        DropdownPicker(selectedItem: .constant("aaa"), items: .constant(viewModel?.conditions), label: "Condição corporal",backgroundColor: CustomColor.customGray2, borderColor: CustomColor.customGray2, visibleButtons: false, enabled: false)
+                        DropdownPicker(selectedItem: $viewModel.selectedItem, items: viewModel.conditions, label: CustomLabels.bodyCondition.rawValue,backgroundColor: CustomColor.customLightBlue2, borderColor: CustomColor.customDarkBlue, visibleButtons: false, enabled: false)
+                            .padding(.leading, 30)
                     }
                 }
                 .padding(.top)
@@ -89,25 +93,23 @@ struct MedicalRecordExportView: View {
             
             
             VStack(alignment: .leading) {
-                if let registerTypes = viewModel?.registerTypesArray {
-                    ForEach(registerTypes, id: \.id) { register in
-                        VStack(alignment: .leading, spacing: 20) {
-                            Text(register.name)
-                                .font(.system(size: 25, weight: .semibold))
-                                .foregroundColor(.black)
-                                .padding(.top)
-                            
-                            ZStack {
-                                if let notePadViewModel = notePadViewModel, let image =  notePadViewModel.getImage(at: register.id){
-                                    Image(uiImage: image)
-                                }
-                                
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color.black, lineWidth: 1)
-                                    .padding(2)
+                ForEach(viewModel.registerTypesArray, id: \.id) { register in
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text(register.name)
+                            .font(.system(size: 25, weight: .semibold))
+                            .foregroundColor(.black)
+                            .padding(.top)
+                        
+                        ZStack {
+                            if let image =  notePadViewModel.getImage(at: register.id){
+                                Image(uiImage: image)
                             }
-                            .frame(height: 400)
+                            
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(Color.black, lineWidth: 1)
+                                .padding(2)
                         }
+                        .frame(height: 400)
                     }
                 }
                 
@@ -120,13 +122,19 @@ struct MedicalRecordExportView: View {
                         .foregroundColor(.black)
                         
                     ZStack {
-                        
+                        if let signatureImage = viewModel.signatureImage {
+                            Image(uiImage: signatureImage)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 500, height: 100)
+                                .cornerRadius(20)
+                        }
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(Color.black, lineWidth: 1)
                             .padding(2)
+                            .frame(width: 500, height: 100)
                     }
                     .padding(.leading, 50)
-                    .frame(width: 500, height: 100)
                     Spacer()
                 }
                 .padding(.top, 40)
