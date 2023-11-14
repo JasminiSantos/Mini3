@@ -15,7 +15,7 @@ struct TutorProfileView: View {
 
     }
     
-    @ObservedObject var viewModel = PetProfileViewModel(pet: PetModel(name: "Buddy", species: "Dog", breed: "Labrador", age: "5", gender: "Male", furColor: "Yellow", tutor: "John Doe", cpf: "123.456.789-00", address: "1234 Main St"), petOwner: PetOwnerModel(name: "John Doe", cpf: "123.456.789-00", phoneNumber: "555-1234", address: "1234 Elm Street", email: "johndoe@example.com"))
+    @ObservedObject var viewModel: PetProfileViewModel
     
     var body: some View {
         ZStack {
@@ -40,14 +40,12 @@ struct TutorProfileView: View {
                             if viewModel.currentState == .editing {
                                 Spacer()
                                 
-                                Button(action: {}) {
-                                    Image(systemName: "square.and.pencil")
-                                        .font(.system(size: 28, weight: .bold))
-                                        .foregroundColor(Constants.Branco)
-                                        .frame(width: 50, height: 50)
-                                        .background(Constants.AzulEscuro)
-                                        .cornerRadius(360)
-                                }
+                                Image(systemName: "square.and.pencil")
+                                    .font(.system(size: 28, weight: .bold))
+                                    .foregroundColor(Constants.Branco)
+                                    .frame(width: 50, height: 50)
+                                    .background(Constants.AzulEscuro)
+                                    .cornerRadius(360)
                             }
 
                         }
@@ -84,7 +82,7 @@ struct TutorProfileView: View {
                                     })
                                 }
                             }
-                            .padding(.vertical, 15)
+                            .padding(.bottom, 10)
                             VStack(alignment: .leading) {
                                 Text("Endereço:")
                                     .font(.system(size: 24, weight: .medium))
@@ -94,6 +92,7 @@ struct TutorProfileView: View {
                                     
                                 })
                             }
+                            .padding(.bottom, 10)
                             VStack(alignment: .leading) {
                                 Text("E-mail:")
                                     .font(.system(size: 24, weight: .medium))
@@ -109,7 +108,9 @@ struct TutorProfileView: View {
                     
                 //BOTÃO DE SALVAR ALTERAÇÕES
                 if viewModel.currentState == .editing {
-                    Button(action: {}){
+                    Button(action: {
+                        viewModel.updatePetOwner()
+                    }){
                         Image(systemName: "checkmark")
                             .font(.system(size: 32, weight: .bold))
                             .foregroundColor(Constants.Branco)
@@ -138,8 +139,4 @@ struct TutorProfileView: View {
         .ignoresSafeArea(.all)
     
     }
-}
-
-#Preview {
-    TutorProfileView()
 }
