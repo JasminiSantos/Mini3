@@ -10,11 +10,8 @@ import PDFKit
 
 @MainActor
 struct MedicalRecordView: View {
-    @ObservedObject var viewModel: MedicalRecordViewModel
-    @ObservedObject private var notePadViewModel = NotePadViewModel(lineType: .dotted)
-    @Environment(\.dismiss) var dismiss
-    
-    @State private var gerado = false
+    @StateObject var viewModel: MedicalRecordViewModel
+    @StateObject private var notePadViewModel = NotePadViewModel(lineType: .dotted)
     
     var header: some View {
         CenteredHeader(title: CustomLabels.appointment.rawValue, subtitle: viewModel.getCurrentDateFormatted(), backgroundColor: CustomColor.customDarkBlue, textColor: .white, arrowColor: CustomColor.customOrange)
@@ -22,19 +19,31 @@ struct MedicalRecordView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                header
-                petDetails
-                notePadBoard
-            }
-            .edgesIgnoringSafeArea(.all)
-            .padding(.horizontal, 60)
-            .onAppear {
-                viewModel.fetchDoctorData()
-                notePadViewModel.initializeCanvasDrawings(count: viewModel.registerTypesArray.count)
+            switch viewModel.submissionState {
+                case .success:
+                    FinalView(viewModel: viewModel)
+                case .error:
+                    ErrorView(viewModel: viewModel)
+                case .none:
+                    content
             }
         }
     }
+    
+    var content: some View {
+        ScrollView {
+            header
+            petDetails
+            notePadBoard
+        }
+        .edgesIgnoringSafeArea(.all)
+        .padding(.horizontal, 60)
+        .onAppear {
+            viewModel.fetchDoctorData()
+            notePadViewModel.initializeCanvasDrawings(count: viewModel.registerTypesArray.count)
+        }
+    }
+    
     var petDetails: some View {
         VStack{
             VStack{
@@ -143,27 +152,14 @@ struct MedicalRecordView: View {
             .padding(.top)
             HStack{
                 Spacer()
-                if !gerado {
-                    Button("Gerar PDF") {
-                        notePadViewModel.saveDrawing()
-                        gerado = true
-                        if let pdfURL = exportToPDF() {
-                            viewModel.savePDFToCloudKit(pdfURL: pdfURL) { error in
-                                if let error = error {
-                                    print("Error saving PDF to CloudKit: \(error.localizedDescription)")
-                                } else {
-                                    print("PDF saved to CloudKit successfully")
-                                }
-                            }
-                        }
-                    }
-                    .buttonStyle(CustomButtonStyle(title: "Exportar", backgroundColor: CustomColor.customGreen, textColor: CustomColor.customDarkBlue2, rightIcon: "checkmark", width: 200))
-                } else {
-                    if let pdf = exportToPDF() {
-                        ShareLink("Export PDF", item: pdf)
-                            .buttonStyle(CustomButtonStyle(title: "Exportar", backgroundColor: CustomColor.customGreen, textColor: CustomColor.customDarkBlue2, rightIcon: "checkmark", width: 200))
-                    }
-                }
+                
+                CustomButton(title: "Finalizar", backgroundColor: CustomColor.customGreen, textColor: CustomColor.customDarkBlue2, rightIcon: "checkmark", width: 200, action: {
+                    notePadViewModel.saveDrawing()
+                    exportToPDF()
+//                    if let pdfUrl = exportToPDF() {
+//
+//                    }
+                })
                 
             }
             .padding(.top)
@@ -174,9 +170,15 @@ struct MedicalRecordView: View {
     }
     
     func exportToPDF() -> URL? {
-        
-        let outputFileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(self.viewModel.pet.name.lowercased())_appointment_\(viewModel.getCurrentDateFormatted3().date).pdf")
+        let fileManager = FileManager.default
+        let outputFileURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("\(viewModel.appointment.id).pdf")
         let pageSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 1.8)
+        
+
+        if fileManager.fileExists(atPath: outputFileURL.path) && viewModel.submissionState == .success {
+            print("PDF file already exists at: \(outputFileURL.path)")
+            return outputFileURL
+        }
         
 
         let hostingController = UIHostingController(rootView: MedicalRecordExportView(viewModel: viewModel, notePadViewModel: notePadViewModel))
@@ -192,8 +194,18 @@ struct MedicalRecordView: View {
                     hostingController.view.drawHierarchy(in: hostingController.view.bounds, afterScreenUpdates: true)
                 })
                 print("wrote file to: \(outputFileURL.path)")
+                
+                viewModel.pdfUrl = outputFileURL
+                viewModel.savePDFToCloudKit(pdfURL: viewModel.pdfUrl!) { error in
+                    if let error = error {
+                        print("Error saving PDF to CloudKit: \(error.localizedDescription)")
+                    } else {
+                        print("PDF saved to CloudKit successfully")
+                    }
+                }
             } catch {
                 print("Could not create PDF file: \(error.localizedDescription)")
+                viewModel.submissionState = .error
             }
         }
         return outputFileURL

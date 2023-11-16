@@ -10,8 +10,8 @@ import SwiftUI
 @MainActor
 struct MedicalRecordExportView: View {
     
-    @ObservedObject var viewModel: MedicalRecordViewModel
-    @ObservedObject var notePadViewModel: NotePadViewModel
+    @StateObject var viewModel: MedicalRecordViewModel
+    @StateObject var notePadViewModel: NotePadViewModel
     
     var header: some View {
         Header(title: CustomLabels.appointment.rawValue, subtitle: viewModel.getCurrentDateFormatted2().date, subtitle2: viewModel.getCurrentDateFormatted2().time, backgroundColor: CustomColor.customDarkBlue, textColor: .white, arrowColor: CustomColor.customOrange)

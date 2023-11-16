@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateProfileView: View {
     
-    @ObservedObject var viewModel: PetProfileViewModel
+    @StateObject var viewModel: PetProfileViewModel
     
     var header: some View {
         Header(title: CustomLabels.createPetProfile.rawValue, backgroundColor: CustomColor.customDarkBlue, textColor: .white, arrowColor: CustomColor.customOrange)
