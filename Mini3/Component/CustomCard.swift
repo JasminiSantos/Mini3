@@ -19,9 +19,10 @@ struct CustomCard: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     ForEach(column1Items) { item in
-                        HStack {
-                            Text(item.label + ":")
+                        Group {
+                            Text(item.label + ": ")
                                 .fontWeight(.semibold)
+                            +
                             Text(item.text)
                         }
                         .padding(.vertical, 2)
@@ -39,9 +40,10 @@ struct CustomCard: View {
                 Spacer()
                 VStack(alignment: .leading) {
                     ForEach(column2Items) { item in
-                        HStack {
-                            Text(item.label + ":")
+                        Group {
+                            Text(item.label + ": ")
                                 .fontWeight(.semibold)
+                            +
                             Text(item.text)
                         }
                         .padding(.vertical, 2)
