@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct FinalView: View {
+    @ObservedObject var viewModel: MedicalRecordViewModel
+    @Environment(\.dismiss) var dismiss
+    
     struct Constants {
         static let AzulEscuro: Color = Color(red: 0, green: 0.21, blue:0.35)
         static let AzulClaro: Color = Color(red: 0.42, green: 0.6, blue: 0.77)
@@ -37,12 +40,13 @@ struct FinalView: View {
                     .multilineTextAlignment(.center)
                 
                 VStack (spacing: 30){
-                    Button(action: {}){
-                        HStack(spacing: 20){
+                    
+                    ShareLink(item: viewModel.pdfUrl!) {
+                        HStack(spacing: 20) {
                             Image(systemName: "paperplane")
                                 .font(.system(size: 32, weight: .medium))
                                 .foregroundColor(Constants.AzulEscuro)
-                            
+
                             Text("Compartilhar")
                                 .font(.system(size: 32, weight: .bold))
                                 .multilineTextAlignment(.center)
@@ -51,10 +55,14 @@ struct FinalView: View {
                     }
                     .foregroundColor(.clear)
                     .frame(width: 350, height: 60)
-                    .background(.white)
+                    .background(Color.white)
                     .cornerRadius(18)
+
                     
-                    Button(action: {}){
+                    Button(action: {
+//                        viewModel.submissionState = .none
+                        dismiss()
+                    }){
                         HStack(spacing: 20){
                             Image(systemName: "house")
                                 .font(.system(size: 32, weight: .medium))
@@ -73,9 +81,6 @@ struct FinalView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden()
     }
-}
-
-#Preview {
-    FinalView()
 }

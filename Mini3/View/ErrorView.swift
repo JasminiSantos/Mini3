@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ErrorView: View {
+    @ObservedObject var viewModel: MedicalRecordViewModel
+    @Environment(\.dismiss) var dismiss
+    
     struct Constants {
         static let AzulEscuro: Color = Color(red: 0, green: 0.21, blue:0.35)
         static let AzulClaro: Color = Color(red: 0.42, green: 0.6, blue: 0.77)
@@ -39,7 +42,9 @@ struct ErrorView: View {
                     .padding(.horizontal, 30)
                 
                 VStack (spacing: 30){
-                    Button(action: {}){
+                    Button(action: {
+                        viewModel.submissionState = .none
+                    }){
                         HStack(spacing: 20){
                             Image(systemName: "paperplane")
                                 .font(.system(size: 32, weight: .medium))
@@ -57,7 +62,9 @@ struct ErrorView: View {
                     .cornerRadius(18)
                     
                     
-                    Button(action: {}){
+                    Button(action: {
+                        dismiss()
+                    }){
                         HStack(spacing: 20){
                             Image(systemName: "house")
                                 .font(.system(size: 32, weight: .medium))
@@ -76,9 +83,6 @@ struct ErrorView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden()
     }
-}
-
-#Preview {
-    ErrorView()
 }
