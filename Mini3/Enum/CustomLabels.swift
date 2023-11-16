@@ -29,6 +29,7 @@ enum CustomLabels: String, CaseIterable {
     case createProfile = "Criar Perfil"
     case createPetProfile = "Criar perfil do animal"
     case animalProfile = "Perfil do Animal"
+    case menu = "Menu"
 }
 
 enum UnitMeasure: String {
