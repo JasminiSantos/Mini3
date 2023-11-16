@@ -14,29 +14,29 @@ struct PetProfileImage: View {
     var editImageAction: () -> Void
 
     var body: some View {
-        HStack {
-            ZStack {
-                Circle()
-                    .fill(Color.white)
-                    .frame(width: circleWidth, height: circleWidth)
-                    .overlay(
-                        Circle()
-                            .stroke(PetProfileView.Constants.AzulClaro, lineWidth: 7)
-                    )
-                
-                Image(systemName: "pawprint.fill")
-                    .font(.system(size: circleWidth / 2.5, weight: .bold))
-                    .foregroundColor(Color(red: 0.8, green: 0.86, blue: 0.92))
-                
-                Button(action: addImageAction) {
+        Button(action: addImageAction) {
+            HStack {
+                ZStack {
+                    Circle()
+                        .fill(Color.white)
+                        .frame(width: circleWidth, height: circleWidth)
+                        .overlay(
+                            Circle()
+                                .stroke(PetProfileView.Constants.AzulClaro, lineWidth: 7)
+                        )
+                    
+                    Image(systemName: "pawprint.fill")
+                        .font(.system(size: circleWidth / 2.5, weight: .bold))
+                        .foregroundColor(Color(red: 0.8, green: 0.86, blue: 0.92))
+                    
                     Image(systemName: "plus")
                         .font(.system(size: 32, weight: .bold))
                         .foregroundColor(PetProfileView.Constants.Branco)
                         .frame(width: 60, height: 60)
                         .background(PetProfileView.Constants.AzulClaro)
                         .clipShape(Circle())
+                        .offset(x: -(circleWidth/3), y: (circleWidth/3))
                 }
-                .offset(x: -(circleWidth/3), y: (circleWidth/3))
                 
             }
         }
