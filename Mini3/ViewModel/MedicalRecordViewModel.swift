@@ -24,6 +24,10 @@ class MedicalRecordViewModel: ObservableObject {
     @Published var weight: Int = 0
     
     @Published var signatureImage: UIImage? = nil
+    @Published var pdfUrl: URL?
+    
+    @Published var submissionState: AppointmentSubmissionState = .none
+    @Published var isLoading: Bool = true
     
     let cloudKitService = CloudKitService()
     
@@ -61,55 +65,91 @@ class MedicalRecordViewModel: ObservableObject {
         
         return (date: datePart, time: timePart)
     }
-    func getCurrentDateFormatted3() -> (date: String, time: String) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "pt_BR")
-        dateFormatter.dateFormat = "dd-MM-yyyy - HH:mm" // Updated date format
-
-        let formattedString = dateFormatter.string(from: Date())
-        
-        let dateTimeComponents = formattedString.components(separatedBy: " - ")
-        guard dateTimeComponents.count == 2 else {
-            return ("Data não disponível", "Horário não disponível")
+    
+    func convertPDFToData(from url: URL) -> Data? {
+        do {
+            return try Data(contentsOf: url)
+        } catch {
+            print("Error converting PDF to data: \(error)")
+            submissionState = .error
+            return nil
         }
+    }
+    func writeToTemporaryFile(_ data: Data) -> URL? {
+        let tempDirURL = FileManager.default.temporaryDirectory
+        let fileURL = tempDirURL.appendingPathComponent(UUID().uuidString).appendingPathExtension("pdf")
 
-        let datePart = dateTimeComponents[0]
-        let timePart = dateTimeComponents[1]
-        
-        return (date: datePart, time: timePart)
+        do {
+            try data.write(to: fileURL)
+            return fileURL
+        } catch {
+            print("Error writing data to temporary file: \(error)")
+            return nil
+        }
     }
 
     func savePDFToCloudKit(pdfURL: URL, completion: @escaping (Error?) -> Void) {
-
-        let pdfAsset = CKAsset(fileURL: pdfURL)
+        guard let pdfData = convertPDFToData(from: pdfURL),
+              let tempURL = writeToTemporaryFile(pdfData) else {
+            completion(NSError(domain: "AppDomain", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to process PDF file"]))
+            return
+        }
         
-
-        let objectData: [String: CKRecordValue] = ["pdfFile": pdfAsset]
+        let pdfAsset = CKAsset(fileURL: tempURL)
         
-
-        cloudKitService.saveObject(recordType: "PDF", objectData: objectData, completion: completion)
-    }
-    
-    func fetchSignature() {
-
-        cloudKitService.fetchRecordByID(recordType: "Doctor", recordID: veterinarian.id) { [weak self] (record, error) in
+        let ckPetRecordID = CKRecord.ID(recordName: pet.id.uuidString)
+        
+        let pdfRecord = CKRecord(recordType: "PDF")
+        
+        pdfRecord["pdfFile"] = pdfAsset
+        pdfRecord["appointmentTimestamp"] = NSNumber(value: Date().timeIntervalSince1970)
+        
+        let predicate = NSPredicate(format: "id == %@", pet.id.uuidString)
+        cloudKitService.fetchRecords(recordType: "Pet", predicate: predicate) { records, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    print("Error fetching signature: \(error)")
-                    return
-                }
-                if let record = record,
-                   let signatureAsset = record["signature"] as? CKAsset,
-                   let fileURL = signatureAsset.fileURL,
-                   let data = try? Data(contentsOf: fileURL),
-                   let image = UIImage(data: data) {
-                    self?.signatureImage = image
+                    print("Error fetching pet record: \(error)")
+                    completion(nil)
+                } else if let records = records, var petRecord = records.first {
+                    self.cloudKitService.createReference(from: petRecord, to: pdfRecord, withKey: "petReference")
+                    self.cloudKitService.save(record: pdfRecord) { saveResult in
+                        DispatchQueue.main.async {
+                            switch saveResult {
+                            case .success:
+                                self.submissionState = .success
+                                print("PDF record saved successfully")
+                                completion(nil)
+                            case .failure(let error):
+                                self.submissionState = .error
+                                print("Error saving PDF record: \(error)")
+                                completion(error)
+                            }
+                            try? FileManager.default.removeItem(at: tempURL)
+                        }
+                    }
                 } else {
-                    print("Failed to load signature image.")
+                    completion(nil)
                 }
             }
         }
     }
+    
+    private func createPet(from record: CKRecord) -> Pet? {
+        guard let idString = record["id"] as? String,
+              let id = UUID(uuidString: idString),
+              let name = record["name"] as? String,
+              let specie = record["specie"] as? String,
+              let breed = record["breed"] as? String,
+              let age = record["age"] as? String,
+              let gender = record["gender"] as? String,
+              let furColor = record["furColor"] as? String else {
+            print("Failed to process pet record: \(record)")
+            return nil
+        }
+        
+        return Pet(id: UUID(uuidString: idString)!,name: name, specie: specie, breed: breed, age: age, gender: gender, furColor: furColor)
+    }
+
     func fetchDoctorData() {
         cloudKitService.fetchRecords(recordType: "Doctor") { [weak self] records, error in
             DispatchQueue.main.async {
@@ -153,31 +193,11 @@ class MedicalRecordViewModel: ObservableObject {
             }
         }
     }
-    
-    
-    func saveAppointmentForPet() {
 
-        let appointmentRecord = self.appointment.asCKRecord
-        cloudKitService.save(record: appointmentRecord) { [weak self] result in
-            switch result {
-            case .success(let savedAppointmentRecord):
-                let petRecord = self?.pet.asCKRecord
+}
 
-                self?.cloudKitService.createReference(from: petRecord!, to: savedAppointmentRecord, withKey: "appointmentReference")
-
-                self?.cloudKitService.save(record: petRecord!) { result in
-                    switch result {
-                    case .success(_):
-                        print("Appointment and Pet saved successfully")
-                    case .failure(let error):
-                        print("Error saving Appointment: \(error)")
-                    }
-                }
-
-            case .failure(let error):
-                print("Error saving Appointment: \(error)")
-            }
-        }
-    }
-
+enum AppointmentSubmissionState {
+    case success
+    case error
+    case none
 }
