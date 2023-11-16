@@ -28,6 +28,7 @@ class VetProfileViewModel: ObservableObject {
     
     @Published var showiCloudAlert = false
     @Published var navigateToMenuView = false
+    @Published var showOnboarding = false
     
     @Published var isChecked = false
     @Published var navigateToConditions = false
