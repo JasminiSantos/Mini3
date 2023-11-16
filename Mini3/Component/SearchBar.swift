@@ -11,7 +11,8 @@ import SwiftUI
 struct SearchBar: View {
     @Binding var text: String
     var placeholder: String
-    var onCommit: () -> Void
+    var onCommit: () -> Void = {}
+    var action: () -> Void = {}
     var cor: String
     
     var body: some View {
@@ -45,6 +46,9 @@ struct SearchBar: View {
                 .frame(width: 350, height: 60)
 
 
+        }
+        .onChange(of: text) { _ in
+            action()
         }
              
     }
