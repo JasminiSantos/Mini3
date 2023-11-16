@@ -45,6 +45,7 @@
 		8443A6F22AEF1EE200E5ECA5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8443A6F12AEF1EE200E5ECA5 /* ContentView.swift */; };
 		8443A6F42AEF1EE200E5ECA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8443A6F32AEF1EE200E5ECA5 /* Assets.xcassets */; };
 		8443A6F72AEF1EE200E5ECA5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8443A6F62AEF1EE200E5ECA5 /* Preview Assets.xcassets */; };
+		846BB7832B0337840043B06D /* AppointmentPDFView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BB7822B0337840043B06D /* AppointmentPDFView.swift */; };
 		846DAD482AEF2BEE00BB66FF /* CloudKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD472AEF2BEE00BB66FF /* CloudKitService.swift */; };
 		846DAD4A2AEF2D1400BB66FF /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD492AEF2D1400BB66FF /* CustomButton.swift */; };
 		846DAD4C2AEF2D3500BB66FF /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846DAD4B2AEF2D3500BB66FF /* CustomTextField.swift */; };
@@ -59,6 +60,9 @@
 		9F2C237D2AF4196A004CD389 /* PetProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C237C2AF4196A004CD389 /* PetProfileView.swift */; };
 		9F2C237F2AF54585004CD389 /* TutorProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C237E2AF54585004CD389 /* TutorProfileView.swift */; };
 		9F2C23812AF96D43004CD389 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C23802AF96D43004CD389 /* OnboardingView.swift */; };
+		9F2C23852AFC087A004CD389 /* FinalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C23842AFC087A004CD389 /* FinalView.swift */; };
+		9F2C23872AFC0885004CD389 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C23862AFC0885004CD389 /* ErrorView.swift */; };
+		9F2C23892AFD5317004CD389 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2C23882AFD5317004CD389 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -103,6 +107,7 @@
 		8443A6F12AEF1EE200E5ECA5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8443A6F32AEF1EE200E5ECA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8443A6F62AEF1EE200E5ECA5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		846BB7822B0337840043B06D /* AppointmentPDFView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentPDFView.swift; sourceTree = "<group>"; };
 		846DAD472AEF2BEE00BB66FF /* CloudKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKitService.swift; sourceTree = "<group>"; };
 		846DAD492AEF2D1400BB66FF /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		846DAD4B2AEF2D3500BB66FF /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
@@ -117,6 +122,9 @@
 		9F2C237C2AF4196A004CD389 /* PetProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetProfileView.swift; sourceTree = "<group>"; };
 		9F2C237E2AF54585004CD389 /* TutorProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorProfileView.swift; sourceTree = "<group>"; };
 		9F2C23802AF96D43004CD389 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		9F2C23842AFC087A004CD389 /* FinalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalView.swift; sourceTree = "<group>"; };
+		9F2C23862AFC0885004CD389 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		9F2C23882AFD5317004CD389 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +244,7 @@
 				84354EC02AFB231900BC09BF /* VetProfileViewModel.swift */,
 				84354EC72AFC899E00BC09BF /* MenuViewModel.swift */,
 				84354EC92AFC90BA00BC09BF /* PetProfileViewModel.swift */,
+				9F2C23882AFD5317004CD389 /* ImagePicker.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -254,6 +263,9 @@
 				84354EC52AFC210900BC09BF /* CreateProfileView.swift */,
 				84354ECD2AFC9F8000BC09BF /* PetProfileDetailsView.swift */,
 				84354ED52AFEBCD700BC09BF /* TermsAndConditionsView.swift */,
+				9F2C23842AFC087A004CD389 /* FinalView.swift */,
+				9F2C23862AFC0885004CD389 /* ErrorView.swift */,
+				846BB7822B0337840043B06D /* AppointmentPDFView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -349,7 +361,9 @@
 				84C16D592AF9964F004D4CF8 /* CustomLabels.swift in Sources */,
 				846DAD4A2AEF2D1400BB66FF /* CustomButton.swift in Sources */,
 				846DAD482AEF2BEE00BB66FF /* CloudKitService.swift in Sources */,
+				9F2C23892AFD5317004CD389 /* ImagePicker.swift in Sources */,
 				9F2C23812AF96D43004CD389 /* OnboardingView.swift in Sources */,
+				9F2C23852AFC087A004CD389 /* FinalView.swift in Sources */,
 				846DAD502AEF306A00BB66FF /* PDFReader.swift in Sources */,
 				244B35D42AF1773F00E6B491 /* VetProfileView.swift in Sources */,
 				24FE00732AF9630B00ACAA07 /* MenuView.swift in Sources */,
@@ -372,6 +386,7 @@
 				84308FFD2AF4BF6700811B50 /* Header.swift in Sources */,
 				84308FEC2AF1D1A600811B50 /* DropDownPicker.swift in Sources */,
 				846DAD4E2AEF2E3C00BB66FF /* CustomColorPicker.swift in Sources */,
+				846BB7832B0337840043B06D /* AppointmentPDFView.swift in Sources */,
 				24FE00752AF9632700ACAA07 /* PetCard.swift in Sources */,
 				84308FFB2AF4B9CC00811B50 /* MedicalRecordExportView.swift in Sources */,
 				846DAD572AEF38F500BB66FF /* DrawingToolBar.swift in Sources */,
@@ -385,6 +400,7 @@
 				84308FF42AF44C5100811B50 /* Pet.swift in Sources */,
 				843D076E2AF17677000FEA48 /* MedicalRecordView.swift in Sources */,
 				8443A6F22AEF1EE200E5ECA5 /* ContentView.swift in Sources */,
+				9F2C23872AFC0885004CD389 /* ErrorView.swift in Sources */,
 				8443A6F02AEF1EE200E5ECA5 /* Mini3App.swift in Sources */,
 				84354ED42AFEBAC200BC09BF /* WebView.swift in Sources */,
 				84354ED62AFEBCD700BC09BF /* TermsAndConditionsView.swift in Sources */,
@@ -530,6 +546,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mini3/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = VetPad;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to your camera to capture photos and videos directly within the app.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to save your notes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -537,6 +555,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -544,9 +563,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ADA.Mini3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -563,6 +585,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Mini3/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = VetPad;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.medical";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to your camera to capture photos and videos directly within the app.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library to save your notes.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -570,6 +594,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -577,9 +602,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ADA.Mini3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

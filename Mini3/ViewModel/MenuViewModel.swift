@@ -13,8 +13,9 @@ import CloudKit
 class MenuViewModel: ObservableObject {
     private let cloudKitService = CloudKitService()
     
-    @Published var petsWithOwners: [(pet: Pet, owner: PetOwner?)] = []
-    @Published var appointments: [Appointment] = []
+    @Published var originalPetsWithOwners: [(pet: Pet, owner: PetOwner?)] = []
+    @Published var pdfDetails: [PDFDetails] = []
+    @Published var filteredPdfDetails: [PDFDetails] = []
     @Published var veterinarian: Veterinarian
     
     @Published var petSearch: String = ""
