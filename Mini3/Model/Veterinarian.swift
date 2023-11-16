@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 import CloudKit
 
 class Veterinarian: ObservableObject, Identifiable, Codable {

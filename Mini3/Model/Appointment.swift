@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 class Appointment: ObservableObject, Identifiable, Codable {
     let id = UUID()

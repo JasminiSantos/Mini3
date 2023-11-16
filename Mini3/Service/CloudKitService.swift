@@ -67,12 +67,18 @@ class CloudKitService {
         }
     }
     
-    func fetchRecordByID(recordType: String, recordID: UUID, completion: @escaping (CKRecord?, Error?) -> Void) {
+    func fetchRecordByID(recordType: String, recordID: UUID, completion: @escaping (Result<CKRecord, Error>) -> Void) {
         
         let ckRecordID = CKRecord.ID(recordName: recordID.uuidString)
         
         database.fetch(withRecordID: ckRecordID) { (record, error) in
-            completion(record, error)
+            DispatchQueue.main.async {
+                if let record = record {
+                    completion(.success(record))
+                } else if let error = error {
+                    completion(.failure(error))
+                }
+            }
         }
     }
     
@@ -103,11 +109,19 @@ class CloudKitService {
             }
         }
     }
+    
+    func createRecord(from objectData: [String: CKRecordValue], recordType: String) -> CKRecord {
+        let newRecord = CKRecord(recordType: recordType)
+        for (key, value) in objectData {
+            newRecord[key] = value
+        }
+        return newRecord
+    }
+
 }
 
 extension CloudKitService {
     
-    // Generic save method
     func save(record: CKRecord, completion: @escaping (Result<CKRecord, Error>) -> Void) {
         database.save(record) { savedRecord, error in
             DispatchQueue.main.async {
