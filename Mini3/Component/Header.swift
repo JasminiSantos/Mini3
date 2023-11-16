@@ -13,6 +13,7 @@ struct Header: View {
     var subtitle2: String?
     var backgroundColor: Color
     var textColor: Color
+    var image: String?
     var arrowColor: Color
     var cornerRadius: CGFloat = 0
     
@@ -21,9 +22,18 @@ struct Header: View {
 
             HStack {
                 VStack(alignment: .center, spacing: 5) {
-                    Text(title)
-                        .font(.system(size: 40, weight: .semibold))
-                        .foregroundColor(textColor)
+                    if let image = image {
+                        Image(image)
+                            .resizable()
+                            .renderingMode(.original)
+                            .scaledToFit()
+                            .frame(width: 250)
+                    }
+                    else {
+                        Text(title)
+                            .font(.system(size: 40, weight: .semibold))
+                            .foregroundColor(textColor)
+                    }
                 }
                 .padding(.leading)
                 
@@ -40,14 +50,6 @@ struct Header: View {
                         }
                     }
                 }
-                
-//                VStack (alignment: .leading, spacing: 5){
-//                    if let subtitle = subtitle {
-//                        Text(subtitle)
-//                            .font(.system(size: 23, weight: .semibold))
-//                            .foregroundColor(textColor)
-//                    }
-//                }
             }
             .padding(.horizontal, 40)
 
