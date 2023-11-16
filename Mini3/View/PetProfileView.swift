@@ -46,7 +46,7 @@ struct PetProfileView: View {
                                 .font(.system(size: 24, weight: .medium))
                                 .foregroundColor(.black)
                             
-                            DropdownPicker(selectedItem: $viewModel.selectedSpecie, items: viewModel.allSpecies,backgroundColor: Color(red: 0.42, green: 0.6, blue: 0.77).opacity(0.35), borderColor: Constants.AzulClaro)
+                            DropdownPicker(selectedItem: $viewModel.pet.specie, items: viewModel.allSpecies,backgroundColor: Color(red: 0.42, green: 0.6, blue: 0.77).opacity(0.35), borderColor: Constants.AzulClaro)
                         }
                         
                         VStack(alignment: .leading) {
@@ -65,10 +65,13 @@ struct PetProfileView: View {
                     VStack (spacing: 8){
                         HStack(alignment: .top) {
                             Spacer()
+                            
                             PetProfileImage(
                                 circleWidth: 270,
-//                                showEditButton: .constant(true),
-                                addImageAction: {},
+//                                    showEditButton: .constant(true),
+                                addImageAction: {
+                                    viewModel.isShowingImagePicker.toggle()
+                                },
                                 editImageAction: {}
                             )
                             //BOTÃO DE EDIÇÃO
@@ -95,7 +98,7 @@ struct PetProfileView: View {
                                     .font(.system(size: 24, weight: .medium))
                                     .foregroundColor(.black)
                                 
-                                DropdownPicker(selectedItem: $viewModel.selectedGender, items: viewModel.allPetGenders,backgroundColor: Color(red: 0.42, green: 0.6, blue: 0.77).opacity(0.35), borderColor: Constants.AzulClaro)
+                                DropdownPicker(selectedItem: $viewModel.pet.gender, items: viewModel.allPetGenders,backgroundColor: Color(red: 0.42, green: 0.6, blue: 0.77).opacity(0.35), borderColor: Constants.AzulClaro)
                             }
                             
                             VStack(alignment: .leading) {
@@ -152,6 +155,10 @@ struct PetProfileView: View {
                 .cornerRadius(30)
         )
         .ignoresSafeArea(.all)
+        .sheet(isPresented: $viewModel.isShowingImagePicker, onDismiss: {
+        }) {
+            ImagePicker(image: $viewModel.selectedImage)
+        }
     }
     
 }
