@@ -35,9 +35,10 @@ struct PetProfileCard: View {
                 HStack(alignment: .top, spacing: 20) {
                     VStack(alignment: .leading) {
                         ForEach(itemsColumn1) { item in
-                            HStack {
-                                Text(item.label + ":")
+                            Group {
+                                Text(item.label + ": ")
                                     .font(.system(size: 16, weight: .semibold))
+                                +
                                 Text(item.text)
                                     .font(.system(size: 16))
                             }
@@ -47,13 +48,14 @@ struct PetProfileCard: View {
                     }
                     
                     HStack {
-                        Spacer()
+//                        Spacer()
                         
                         VStack(alignment: .leading, spacing: 20) {
                             ForEach(itemsColumn2) { item in
-                                HStack {
-                                    Text(item.label + ":")
+                                Group {
+                                    Text(item.label + ": ")
                                         .font(.system(size: 16, weight: .semibold))
+                                    +
                                     Text(item.text)
                                         .font(.system(size: 16))
                                 }
@@ -61,7 +63,7 @@ struct PetProfileCard: View {
                                 .multilineTextAlignment(.leading)
                             }
                         }
-                        Spacer()
+//                        Spacer()
                     }
                 }
             }
@@ -73,12 +75,12 @@ struct PetProfileCard: View {
             
             VStack(alignment: .leading) {
                 ForEach(itemsColumn3) { item in
-                    HStack(alignment: .top) {
-                        Text(item.label + ":")
+                    Group {
+                        Text(item.label + ": ")
                             .font(.system(size: 16, weight: .semibold))
+                        +
                         Text(item.text)
                             .font(.system(size: 16))
-                            .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     .padding(.vertical, 2)
                     .multilineTextAlignment(.leading)
@@ -91,3 +93,4 @@ struct PetProfileCard: View {
         .cornerRadius(29)
     }
 }
+
