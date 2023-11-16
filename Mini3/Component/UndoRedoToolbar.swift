@@ -26,7 +26,7 @@ struct UndoRedoToolbar: View {
         }
         .foregroundColor(.primary)
         .padding(.all, 5)
-        .background(RoundedRectangle(cornerRadius: 15).fill(Color.gray.opacity(0.2)))
+        .background(RoundedRectangle(cornerRadius: 15).fill(CustomColor.customGray2))
     }
 
     private var undoRedoButtons: some View {
