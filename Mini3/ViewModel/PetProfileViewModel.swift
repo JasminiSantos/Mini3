@@ -22,15 +22,20 @@ class PetProfileViewModel: ObservableObject {
     let allCharacters = AccountCharacter.allCases.map { (id: $0.rawValue, name: $0.description) }
     @Published var selectedGender: String = PetGender.male.rawValue
     @Published var selectedSpecie: String = Specie.felino.rawValue
-    @Published var selectedImage: UIImage?
     @Published var currentState: State = .creating
     
     let cloudKitService = CloudKitService()
     
     @Published var alertMessage: String?
     @Published var showAlert: Bool = false
-                                       
-   init(){}
+    
+    @Published var isShowingImagePicker: Bool = false
+    @Published var selectedImage: UIImage?
+    
+    init(){
+        pet.gender = selectedGender
+        pet.specie = selectedSpecie
+    }
     
     init(pet: Pet, petOwner: PetOwner, veterinarian: Veterinarian) {
         self.pet = pet
@@ -45,8 +50,6 @@ class PetProfileViewModel: ObservableObject {
     }
     
     func savePetAndOwner() {
-        pet.specie = selectedSpecie
-        pet.gender = selectedGender
         
         let petOwnerErrors = petOwner.validationErrors()
         let petErrors = pet.validationErrors()
@@ -94,9 +97,6 @@ class PetProfileViewModel: ObservableObject {
     }
     
     func updatePet() {
-        pet.specie = selectedSpecie
-        pet.gender = selectedGender
-        
         guard pet.isValid else {
             print("Pet data is not valid.")
             return
