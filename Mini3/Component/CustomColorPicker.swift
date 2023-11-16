@@ -61,24 +61,27 @@ struct CustomColorPicker: View {
         }
     }
     var eraserButton: some View {
-            Button(action: {
-                eraserAction()
-            }) {
-                ZStack {
-                    Circle()
-                        .fill(.white)
-                        .stroke(Color.black, lineWidth: 1)
-                        .frame(width: 30, height: 30)
-                    Circle()
-                        .fill(selectedColor == nil ? Color.white : Color.clear)
-                        .frame(width: 30, height: 30)
-                    Image(systemName: "eraser")
-                        .foregroundColor(.black)
-                        .frame(width: 30, height: 30)
-                    
-                }
+        Button(action: {
+            eraserAction()
+        }) {
+            ZStack {
+                Circle()
+                    .fill(Color.white)
+                    .frame(width: 30, height: 30)
+                    .overlay(
+                        Circle()
+                            .stroke(Color.black, lineWidth: 1)
+                    )
+                Circle()
+                    .fill(selectedColor == nil ? Color.white : Color.clear)
+                    .frame(width: 30, height: 30)
+                Image(systemName: "eraser")
+                    .foregroundColor(.black)
+                    .frame(width: 30, height: 30)
             }
+        }
     }
+
 }
 
 enum Orientation {
