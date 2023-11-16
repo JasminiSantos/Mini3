@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CloudKit
+import Photos
 
 class PetProfileViewModel: ObservableObject {
     @Published var search: String = ""
@@ -28,6 +29,7 @@ class PetProfileViewModel: ObservableObject {
     
     @Published var alertMessage: String?
     @Published var showAlert: Bool = false
+    @Published var alertTitle = ""
     
     @Published var isShowingImagePicker: Bool = false
     @Published var selectedImage: UIImage?
@@ -169,12 +171,42 @@ class PetProfileViewModel: ObservableObject {
 
         }
     }
-
+    func checkPhotoLibraryPermission(completion: @escaping (Bool) -> Void) {
+        let status = PHPhotoLibrary.authorizationStatus()
+        switch status {
+        case .authorized, .limited:
+            completion(true)
+        case .denied, .restricted:
+            completion(false)
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { newStatus in
+                DispatchQueue.main.async {
+                    completion(newStatus == .authorized || newStatus == .limited)
+                }
+            }
+        @unknown default:
+            completion(false)
+        }
+    }
+    
+    func requestCameraPermission(completionHandler: @escaping (Bool) -> Void) {
+        AVCaptureDevice.requestAccess(for: .video, completionHandler: { accessGranted in
+            completionHandler(accessGranted)
+        })
+    }
     
     private func errorString(from errors: [String]) -> String {
         "Please correct the following errors:\n" + errors.joined(separator: "\n")
     }
     
+    func openAppSettings() {
+        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString),
+              UIApplication.shared.canOpenURL(settingsUrl) else {
+            return
+        }
+        
+        UIApplication.shared.open(settingsUrl)
+    }
 }
 
 enum AccountCharacter: Int, CaseIterable, Hashable {

@@ -68,12 +68,31 @@ struct PetProfileView: View {
                             
                             PetProfileImage(
                                 circleWidth: 270,
-//                                    showEditButton: .constant(true),
+                                // showEditButton: .constant(true),
                                 addImageAction: {
-                                    viewModel.isShowingImagePicker.toggle()
+                                    viewModel.checkPhotoLibraryPermission { hasPhotoLibraryAccess in
+                                        if hasPhotoLibraryAccess {
+                                            viewModel.requestCameraPermission { hasCameraAccess in
+                                                if hasCameraAccess {
+                                                    viewModel.isShowingImagePicker.toggle()
+                                                }
+                                                else {
+                                                    viewModel.alertTitle = "Camera Access Denied"
+                                                    viewModel.alertMessage = "Please enable access to the camera library in your settings to continue."
+                                                    viewModel.showAlert = true
+                                                }
+                                            }
+                                            print("Photo library access granted.")
+                                        }  else {
+                                            viewModel.alertTitle = "Photo Library Access Denied"
+                                            viewModel.alertMessage = "Please enable access to the photo library in your settings to continue."
+                                            viewModel.showAlert = true
+                                        }
+                                    }
                                 },
                                 editImageAction: {}
                             )
+
                             //BOTÃO DE EDIÇÃO
                             if viewModel.currentState == .editing {
                                 Spacer()
@@ -159,6 +178,15 @@ struct PetProfileView: View {
         }) {
             ImagePicker(image: $viewModel.selectedImage)
         }
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(
+                title: Text(viewModel.alertTitle),
+                message: Text(viewModel.alertMessage!),
+                primaryButton: .default(Text("Settings"), action: viewModel.openAppSettings),
+                secondaryButton: .cancel()
+            )
+        }
+
     }
     
 }
