@@ -11,9 +11,23 @@ struct MenuView: View {
 
     @StateObject var viewModel: MenuViewModel
     
+    var header: some View {
+        Header(title: CustomLabels.menu.rawValue, backgroundColor: CustomColor.customPaletteBlue, textColor: .white, image: "VetPad", arrowColor: CustomColor.customOrange)
+        
+    }
+    
     var body: some View {
-        ZStack{
-            
+        ScrollView {
+            header
+            content
+        }
+        .navigationBarBackButtonHidden()
+        .edgesIgnoringSafeArea(.all)
+        .ignoresSafeArea()
+    }
+    
+    var content: some View {
+        VStack{
             VStack(alignment: .leading) {
                 
                 HStack{
@@ -33,7 +47,7 @@ struct MenuView: View {
                 .padding(.leading, 50)
                 
                 HStack{
-                    SearchBar(text: $viewModel.petSearch, placeholder: "Pesquisar", onCommit: ({}), cor: "AzulClaro")
+                    SearchBar(text: $viewModel.petSearch, placeholder: "Pesquisar", onCommit: ({}), action: {viewModel.filterPets()}, cor: "AzulClaro")
                     Spacer()
                     NavigationLink(destination: CreateProfileView(viewModel: PetProfileViewModel()), label: {
                         AddNewButton(cor: "AzulClaro", title: "Novo paciente")
@@ -44,20 +58,25 @@ struct MenuView: View {
                 .padding(.horizontal, 50)
                 .padding(.bottom)
 
-
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(viewModel.petsWithOwners, id: \.pet.id) { petWithOwner in
-                            NavigationLink(destination: PetProfileDetailsView(viewModel: PetProfileViewModel(pet: petWithOwner.pet, petOwner: petWithOwner.owner!, veterinarian: viewModel.veterinarian))) {
-                                PetCard(onClick: {}, onCommit: {}, nomePet: petWithOwner.pet.name, nomeTutor: petWithOwner.owner?.name ?? "Unknown", especie: petWithOwner.pet.specie)
-                                    .padding(.trailing)
-                            }
-                        }
-                    }
-                    .padding(.leading, 50)
+                if viewModel.petsWithOwners.isEmpty{
+                    emptyPets
+                        .padding(.bottom, 60)
                 }
-                .frame(width: 210, height: 210)
-                .padding(.bottom, 60)
+                else {
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(viewModel.petsWithOwners, id: \.pet.id) { petWithOwner in
+                                NavigationLink(destination: PetProfileDetailsView(viewModel: PetProfileViewModel(pet: petWithOwner.pet, petOwner: petWithOwner.owner!, veterinarian: viewModel.veterinarian), menuViewModel: viewModel)) {
+                                    PetCard(onClick: {}, onCommit: {}, nomePet: petWithOwner.pet.name, nomeTutor: petWithOwner.owner?.name ?? "Unknown", especie: petWithOwner.pet.specie)
+                                        .padding(.trailing)
+                                }
+                            }
+                            .padding(.leading, 50)
+                        }
+                        .padding(.bottom, 60)
+                    }
+                }
+
                 
                 HStack{
                     Image(systemName: "clock.arrow.circlepath")
@@ -76,39 +95,85 @@ struct MenuView: View {
                 .padding(.leading, 50)
                 VStack {
                     HStack{
-                        SearchBar(text: $viewModel.appointmentSearch, placeholder: "Pesquisar", onCommit: ({}), cor: "Amarelo")
+                        SearchBar(text: $viewModel.appointmentSearch, placeholder: "Pesquisar", onCommit: ({}), action: {viewModel.filterPDFs()}, cor: "Amarelo")
                         Spacer()
                     }
                     .padding(.horizontal, 50)
                     .padding(.bottom)
                     
-                    ScrollView(.horizontal) {
-                        HStack{
-                            ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
-                                .padding(.trailing)
-                            
-                            ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
-                                .padding(.trailing)
-                            
-                            ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
-                                .padding(.trailing)
-                            
-                            ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
-                                .padding(.trailing)
-                            
-                            
-                            
-                        }
-                        .padding(.leading, 50)
-                        
+
+                    if viewModel.isLoading {
+                        ProgressView()
                     }
+                    else {
+                        if viewModel.filteredPDFDetails.isEmpty {
+                            emptyAppointments
+                        } else {
+                            ScrollView(.horizontal) {
+                                HStack {
+                                    ForEach(viewModel.filteredPDFDetails, id: \.id) { pdfDetail in
+                                        NavigationLink(destination: AppointmentPDFView(pdfURL: pdfDetail.pdfURL.absoluteString)) {
+                                            ConsultaCard(
+                                                onClick: "",
+                                                onCommit: ({}),
+                                                nomePet: pdfDetail.pet.name ,
+                                                nomeTutor: pdfDetail.petOwner?.name ?? "Unknown",
+                                                data: pdfDetail.formattedDate,
+                                                hora: pdfDetail.formattedTime
+                                            )
+                                            .padding(.trailing)
+                                        }
+                                    }
+                                }
+                                .padding(.leading, 50)
+                                .padding(.top, 20)
+                            }
+                        }
+                    }
+
                 }
             }
         }
-        .ignoresSafeArea()
-        .navigationBarBackButtonHidden()
+        .padding(.top, 20)
         .onAppear {
             viewModel.fetchPetData()
+            viewModel.fetchAllPDFs()
         }
+        
+    }
+    
+    var emptyPets: some View {
+        HStack {
+            Spacer()
+            VStack(alignment: .center, spacing: 40) {
+                Image(systemName: "pawprint.fill")
+                    .font(.system(size: 100, weight: .bold))
+                    .foregroundColor(Color(red: 0.8, green: 0.86, blue: 0.92))
+                VStack {
+                    Text("Ainda não há nenhum paciente por aqui!")
+                    
+                    Text("Adicione um novo animal no botão \(Image(systemName: "plus")) Novo Paciente")
+                }
+                .font(.system(size: 24, weight: .medium))
+                .foregroundStyle(CustomColor.customPaletteBlue)
+            }
+            .frame(height: 450)
+            Spacer()
+        }
+    }
+    
+    var emptyAppointments: some View {
+        HStack {
+            Spacer()
+            VStack {
+                Text("Nenhuma consulta disponível.")
+                
+                Text("Crie uma nova consulta no perfil do paciente desejado")
+            }
+            .font(.system(size: 24, weight: .medium))
+            .foregroundStyle(CustomColor.customPaletteYellow)
+            Spacer()
+        }
+        .frame(height: 200)
     }
 }
