@@ -145,10 +145,8 @@ struct VetProfileView: View {
             
             
         }
-        .background(
-            Color(CustomColor.customLightOrange)
-                .cornerRadius(29)
-        )
+        .background(CustomColor.customLightOrange)
+        .cornerRadius(29)
         .padding(.top, 30)
         
         
