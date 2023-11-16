@@ -9,7 +9,8 @@ import SwiftUI
 
 struct PetProfileDetailsView: View {
     
-    @ObservedObject var viewModel: PetProfileViewModel
+    @StateObject var viewModel: PetProfileViewModel
+    @ObservedObject var menuViewModel: MenuViewModel
     
     var header: some View {
         Header(title: CustomLabels.animalProfile.rawValue, backgroundColor: CustomColor.customDarkBlue, textColor: .white, arrowColor: CustomColor.customOrange)
@@ -35,7 +36,7 @@ struct PetProfileDetailsView: View {
         .edgesIgnoringSafeArea(.all)
         .onAppear {
             viewModel.currentState = .editing
-
+            menuViewModel.fetchAllPDFs(forPetID: viewModel.pet.id)
         }
     }
     
@@ -70,26 +71,49 @@ struct PetProfileDetailsView: View {
                 
             }
             .padding(.bottom)
-            
-            ScrollView(.horizontal) {
-                HStack{
-                    ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
-                        .padding(.trailing)
-                    
-                    ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
-                        .padding(.trailing)
-                    
-                    ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
-                        .padding(.trailing)
-                    
-                    ConsultaCard(onClick: "", onCommit: ({}), nomePet: "Simba", nomeTutor: "Simone Silva", data: "23 out. de 2023", hora: "13:40")
-                        .padding(.trailing)
-                    
-                    
-                    
-                }
-                
+            if menuViewModel.isLoading {
+                ProgressView()
             }
+            else {
+                if menuViewModel.filteredPDFDetails.isEmpty {
+                    emptyAppointments
+                } else {
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(menuViewModel.filteredPDFDetails, id: \.id) { pdfDetail in
+                                NavigationLink(destination: AppointmentPDFView(pdfURL: pdfDetail.pdfURL.absoluteString)) {
+                                    ConsultaCard(
+                                        onClick: "",
+                                        onCommit: ({}),
+                                        nomePet: pdfDetail.pet.name ,
+                                        nomeTutor: pdfDetail.petOwner?.name ?? "Unknown",
+                                        data: pdfDetail.formattedDate,
+                                        hora: pdfDetail.formattedTime
+                                    )
+                                    .padding(.trailing)
+                                }
+                            }
+                        }
+                        .padding(.top, 20)
+                    }
+                }
+            }
+
+
         }
+    }
+    var emptyAppointments: some View {
+        HStack {
+            Spacer()
+            VStack {
+                Text("Nenhuma consulta disponível.")
+                
+                Text("Crie uma nova consulta no perfil do paciente desejado")
+            }
+            .font(.system(size: 24, weight: .medium))
+            .foregroundStyle(CustomColor.customPaletteYellow)
+            Spacer()
+        }
+        .frame(height: 200)
     }
 }
